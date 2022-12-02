@@ -22,7 +22,7 @@ export default function RegisterScreen() {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
 
-        let fieldNames = ['firstName', 'lastName', 'email', 'password', 'passwordVerify'];
+        let fieldNames = ['userName', 'firstName', 'lastName', 'email', 'password', 'passwordVerify'];
         let fields = fieldNames.map(x => formData.get(x));
         
         //let firstName = formData.get('firstName');
@@ -47,11 +47,13 @@ export default function RegisterScreen() {
         if(!(success.status)) {
             if(fields.reduce((current, next) => current || (next === ""), false)) {
                 setError({error: true, errorMessage: "Please fill out all fields"});
-            } else if(fields[3].length < 8) {
+            } else if(fields[4].length < 8) {
                 setError({error: true, errorMessage: "Password must be at least 8 characters long"});
-            } else if(fields[3] !== fields[4]) {
+            } else if(fields[4] !== fields[5]) {
                 setError({error: true, errorMessage: "Password must match verification"});
             } else if(success.message === "An account with this email address already exists.") {
+                setError({error: true, errorMessage: success.message})
+            } else {
                 setError({error: true, errorMessage: success.message})
             }
         }
@@ -81,6 +83,17 @@ export default function RegisterScreen() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    name="userName"
+                                    id="userName"
+                                    label="User Name"
+                                    autoFocus
+                                    autoComplete='uname'
+                                    />
+                            </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     autoComplete="fname"
@@ -89,7 +102,6 @@ export default function RegisterScreen() {
                                     fullWidth
                                     id="firstName"
                                     label="First Name"
-                                    autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
