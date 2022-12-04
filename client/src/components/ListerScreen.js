@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import ListerTopBar from "./ListerTopBar";
+import PlayerCommentBox from "./PlayerCommentBox";
 import YoutubePlayer from "./YoutubePlayer";
 
 export default function ListerScreen(props) {
@@ -14,9 +15,7 @@ export default function ListerScreen(props) {
             <Typography>
                 Hello!
             </Typography>
-            <YoutubePlayer videoEndCallback={handleVideoEnd}>
-                
-            </YoutubePlayer>
+            <PlayerCommentBox videoEndCallback={handleVideoEnd}/>
         </Box>
         
     )
