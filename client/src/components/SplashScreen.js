@@ -58,6 +58,7 @@ export default function SplashScreen() {
                     type="button"
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
+                    onClick={() => history.push("/home")}
                 >
                     Continue as Guest
                 </Button>
