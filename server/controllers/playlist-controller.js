@@ -39,6 +39,7 @@ createPlaylist = (req, res) => {
                         })
                     })
                     .catch(error => {
+                        console.log(error);
                         return res.status(400).json({
                             errorMessage: 'Playlist Not Created!'
                         })
@@ -153,12 +154,17 @@ getPlaylistPairs = async (req, res) => {
 getPlaylists = async (req, res) => {
     await User.findOne({ _id: req.userId}).exec().catch( err =>
         res.status(400).json({success: false, error: err})).then( async (user) => {
-            await Playlist.find({ ownerEmail: user.email}).exec().catch( err => 
+            email = null
+            if(user) {
+                email = user.email
+            }
+            await Playlist.find({$or: [{ ownerEmail: email}, { published: true }]}).exec().catch( err => 
                 res.status(400).json({ success: false, error: err })).then(playlists => {
-                    if(!playlists.length) {
-                        return res.status(400).json({success: false, error: "Playlists not found"});
-                    }
-                    return res.status(200).json({ success: true, data: playlists });
+                    console.log(playlists)
+                    //if(!playlists.length) {
+                    //    return res.status(400).json({success: false, error: "Playlists not found"});
+                    //}
+                    return res.status(200).json({ success: true, playlists: playlists });
                 })
         })
 }

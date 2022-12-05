@@ -1,6 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useContext } from "react";
 import GlobalStoreContext from "../store";
+import { PlaylistStoreContextProvider } from "../store/PlaylistStore";
 import CreateNewListBar from "./CreateNewListBar";
 import ListerList from "./ListerList";
 import ListerTopBar from "./ListerTopBar";
@@ -15,21 +16,22 @@ export default function ListerScreen(props) {
     }
 
     return (
-        <Box>
-            <ListerTopBar />
-            <Typography>
-                Hello!
-            </Typography>
-            <Grid container>
-                <Grid item xs={8}>
-                    <ListerList />
+        <PlaylistStoreContextProvider>
+            <Box>
+                <ListerTopBar />
+                <Typography>
+                    Hello!
+                </Typography>
+                <Grid container>
+                    <Grid item xs={7}>
+                        <ListerList />
+                    </Grid>
+                    <Grid item xs={5}>
+                        <PlayerCommentBox videoEndCallback={handleVideoEnd}/>
+                    </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                    <PlayerCommentBox videoEndCallback={handleVideoEnd}/>
-                </Grid>
-            </Grid>
-            <CreateNewListBar />
-        </Box>
-        
+                <CreateNewListBar />
+            </Box>
+        </PlaylistStoreContextProvider>
     )
 }
