@@ -2,6 +2,7 @@ import { Delete, ExpandLess, UnfoldMore } from "@mui/icons-material";
 import { Box, Button, Grid, Link, ListItem, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
+import ListEditBar from "./ListEditBar";
 import SongList from "./SongList";
 
 export default function PlaylistCardOpened(props) {
@@ -39,6 +40,9 @@ export default function PlaylistCardOpened(props) {
                         </Box>
                     </Grid>
                     <SongList />
+                    <ListEditBar>
+                        
+                    </ListEditBar>
                 </Grid>
                 <Grid item xs={2} 
                     sx={{marginTop: '1px', borderRadius: '1px'}}
