@@ -129,14 +129,23 @@ function PlaylistStoreContextProvider(props) {
         return store.openModal === CurrentModal.EDIT_SONG;
     }
 
-    store.showRemoveSongModal = () => {
+    store.showRemoveSongModal = (index, song) => {
+        console.log("And also here");
+        console.log(store);
         return setStore({
             ...store,
-            openModal: CurrentModal.REMOVE_SONG
+            openModal: CurrentModal.REMOVE_SONG,
+            songToEdit: song,
+            songIndex: index
         })
     }
 
     store.isRemoveSongModalOpen = () => {
+        //console.log("Yep here too");
+        //console.log(store);
+        //console.log(store.openModal);
+        //console.log(CurrentModal.REMOVE_SONG);
+        //console.log(store.openModal === CurrentModal.REMOVE_SONG);
         return store.openModal === CurrentModal.REMOVE_SONG;
     }
 
@@ -332,11 +341,11 @@ function PlaylistStoreContextProvider(props) {
 
     store.addUpdateSongTransaction = function (index, newSongData) {
         let song = store.openedList.songs[index];
-        console.log(store)
-        console.log(store.openedList);
-        console.log(store.openedList.songs);
-        console.log(index);
-        console.log(newSongData);
+        //console.log(store)
+        //console.log(store.openedList);
+        //console.log(store.openedList.songs);
+        //console.log(index);
+        //console.log(newSongData);
         let oldSongData = {
             title: song.title,
             artist: song.artist,

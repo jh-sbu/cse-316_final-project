@@ -38,9 +38,13 @@ function SongCard(props) {
         // UPDATE THE LIST
         store.addMoveSongTransaction(sourceIndex, targetIndex);
     }
+    
     function handleRemoveSong(event) {
+        event.preventDefault();
+        console.log("Got here");
         store.showRemoveSongModal(index, song);
     }
+
     function handleClick(event) {
         // DOUBLE CLICK IS FOR SONG EDITING
         if (event.detail === 2) {

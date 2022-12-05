@@ -4,6 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Alert, AlertTitle, Button, Grid } from '@mui/material';
+import PlaylistStoreContext from '../store/PlaylistStore';
 
 const style = {
     position: 'absolute',
@@ -18,7 +19,7 @@ const style = {
 };
 
 export default function MUIRemoveSongModal() {
-    const { store } = useContext(GlobalStoreContext);
+    const { store } = useContext(PlaylistStoreContext);
 
     function handleConfirmRemoveSong () {
         store.addRemoveSongTransaction();
@@ -37,8 +38,10 @@ export default function MUIRemoveSongModal() {
         songTitle = store.currentSong.title;
     }
 
+    console.log("Its trying");
+
     return (
-        <Modal open={store.currentModal === "REMOVE_SONG"}>
+        <Modal open={store.openModal === "REMOVE_SONG"}>
             <Grid justifyContent={"flex-center"} sx={style}>
                 <Alert severity='warning'>
                     <AlertTitle>Delete List?</AlertTitle>

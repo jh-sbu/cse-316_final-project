@@ -24,7 +24,7 @@ export default function MUIEditSongModal() {
     const [ artist, setArtist ] = useState(store.currentSong.artist);
     const [ youTubeId, setYouTubeId ] = useState(store.currentSong.youTubeId);
 
-    console.log("Tries to open");
+    //console.log("Tries to open");
 
     function handleConfirmEditSong() {
         let newSongData = {
