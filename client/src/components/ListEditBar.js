@@ -17,13 +17,18 @@ export default function ListEditBar(props) {
         store.redo();
     }
 
+    const handleAddSong = (event) => {
+        event.preventDefault();
+        store.addNewSong();
+    }
+
     return (
         <Grid container direction={"row"}>
             <Grid item>
                 <Button>
                     Publish
                 </Button>
-                <IconButton>
+                <IconButton onClick={handleAddSong}>
                     <Add />
                 </IconButton>
                 <IconButton variant="contained" disabled={!store.canUndo()} onClick={handleUndoClick}>
