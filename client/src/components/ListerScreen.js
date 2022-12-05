@@ -17,12 +17,12 @@ export default function ListerScreen(props) {
 
     return (
         <PlaylistStoreContextProvider>
-            <Box>
+            <Box sx={{height: '70%'}}>
                 <ListerTopBar />
                 <Typography>
                     Hello!
                 </Typography>
-                <Grid container>
+                <Grid container sx={{height: '100%'}}>
                     <Grid item xs={7}>
                         <ListerList />
                     </Grid>

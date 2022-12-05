@@ -46,7 +46,8 @@ function PlaylistStoreContextProvider(props) {
                 let playlists = response.data.playlists;
                 return setStore({
                     ...store,
-                    playlists: playlists
+                    playlists: playlists,
+                    openModal: CurrentModal.NONE
                 })
             }
         })();
@@ -107,10 +108,14 @@ function PlaylistStoreContextProvider(props) {
         //console.log(store);
         //console.log(playlist);
         //console.log(store.playlists.includes(playlist));
+        tps.clearAllTransactions();
         if(!playlist || store.playlists.includes(playlist)) {
             return setStore({
                 ...store,
-                openedList: playlist
+                openedList: playlist,
+                openModal: CurrentModal.NONE,
+                songToEdit: null,
+                songIndex: -1
             })
         }
         console.log(store)
@@ -158,6 +163,7 @@ function PlaylistStoreContextProvider(props) {
     // FUNCTIONS ARE markListForDeletion, deleteList, deleteMarkedList,
     // showDeleteListModal, and hideDeleteListModal
     store.markListForDeletion = function (id) {
+        console.log("Got here!");
         async function getListToDelete(id) {
             let response = await api.getPlaylistById(id);
             if (response.data.success) {
@@ -188,7 +194,7 @@ function PlaylistStoreContextProvider(props) {
         async function processDelete(id) {
             let response = await api.deletePlaylistById(id);
             if (response.data.success) {
-                store.getPlaylists();
+                store.loadPlaylists();
             }
         }
         processDelete(id);

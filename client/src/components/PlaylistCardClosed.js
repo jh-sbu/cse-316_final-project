@@ -18,6 +18,11 @@ export default function PlaylistCardClosed(props) {
         store.setOpenedList(playlist);
     }
 
+    const handleClickDelete = (event) => {
+        event.preventDefault();
+        store.markListForDeletion(playlist._id)
+    }
+
     return (
         <ListItem
             id = {playlist.id}
@@ -44,7 +49,7 @@ export default function PlaylistCardClosed(props) {
                     sx={{marginTop: '1px', borderRadius: '1px'}}
                     style = {{fontSize: '12pt' }}>
                     <Grid container direction="column">
-                        <Button>
+                        <Button onClick={handleClickDelete}>
                             <Delete />
                         </Button>
                         <Button onClick={openList}>

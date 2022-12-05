@@ -4,6 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Alert, AlertTitle, Button, Grid } from '@mui/material';
+import PlaylistStoreContext from '../store/PlaylistStore';
 
 const style = {
     position: 'absolute',
@@ -19,7 +20,7 @@ const style = {
 };
 
 export default function MUIDeleteModal() {
-    const { store } = useContext(GlobalStoreContext);
+    const { store } = useContext(PlaylistStoreContext);
     let name = "";
     if (store.listMarkedForDeletion) {
         name = store.listMarkedForDeletion.name;
@@ -32,7 +33,7 @@ export default function MUIDeleteModal() {
     }
 
     return (
-        <Modal open={store.listMarkedForDeletion !== null}>
+        <Modal open={store.isDeleteListModalOpen()}>
             <Grid justifyContent={"flex-center"} sx={style}>
                 <Alert severity='warning'>
                     <AlertTitle>Delete List?</AlertTitle>

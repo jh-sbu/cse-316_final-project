@@ -78,7 +78,9 @@ deletePlaylist = async (req, res) => {
                 }
             });
         }
-        asyncFindUser(playlist);
+        if(playlist) {
+            asyncFindUser(playlist);
+        }
     })
 }
 getPlaylistById = async (req, res) => {
