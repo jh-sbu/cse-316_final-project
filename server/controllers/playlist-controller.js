@@ -114,7 +114,7 @@ getPlaylistPairs = async (req, res) => {
         console.log("find user with id " + req.userId);
         async function asyncFindList(email) {
             console.log("find all Playlists owned by " + email);
-            await Playlist.find({ ownerEmail: email }, (err, playlists) => {
+            await Playlist.find( {$or: [{ ownerEmail: email }, {published: true}]}, (err, playlists) => {
                 //console.log("found Playlists: " + JSON.stringify(playlists));
                 if (err) {
                     return res.status(400).json({ success: false, error: err })
@@ -133,7 +133,8 @@ getPlaylistPairs = async (req, res) => {
                         let list = playlists[key];
                         let pair = {
                             _id: list._id,
-                            name: list.name
+                            name: list.name,
+                            ownerUsername: list.ownerUsername
                         };
                         pairs.push(pair);
                     }
@@ -141,7 +142,11 @@ getPlaylistPairs = async (req, res) => {
                 }
             }).catch(err => console.log(err))
         }
-        asyncFindList(user.email);
+        if(user) {
+            asyncFindList(user.email)
+        } else {
+            asyncFindList()
+        }
     }).catch(err => console.log(err))
 }
 

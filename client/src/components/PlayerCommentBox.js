@@ -5,7 +5,7 @@ import YoutubePlayer from "./YoutubePlayer";
 
 export default function PlayerCommentBox(props) {
 
-    const [onPlayer, setOnPlayer] = useState(false);
+    const [onPlayer, setOnPlayer] = useState(true);
 
     let window = onPlayer ? <YoutubePlayer videoEndCallback={props.videoEndCallback} /> : <CommentBox />
 

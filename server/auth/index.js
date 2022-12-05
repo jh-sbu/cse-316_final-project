@@ -30,6 +30,33 @@ function authManager() {
         }
     }
 
+    // Guest account can still access stuff so we need another function that only tries to verify
+    tryVerify = (req, res, next) => {
+        //console.log("req: " + req);
+        //console.log("next: " + next);
+        console.log("Who called verify?");
+        try {
+            const token = req.cookies.token;
+            if (!token) {
+                req.userId = null;
+                next();
+            } else {
+                const verified = jwt.verify(token, process.env.JWT_SECRET)
+            console.log("verified.userId: " + verified.userId);
+            req.userId = verified.userId;
+
+            next();
+            }            
+        } catch (err) {
+            console.error(err);
+            return res.status(401).json({
+                loggedIn: false,
+                user: null,
+                errorMessage: "Unauthorized"
+            });
+        }
+    }
+
     verifyUser = (req) => {
         try {
             const token = req.cookies.token;
