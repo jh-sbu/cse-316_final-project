@@ -1,10 +1,23 @@
+import { Box, List } from "@mui/material";
 import { useContext } from "react"
 import PlaylistStoreContext from "../store/PlaylistStore"
+import MUIEditSongModal from "./MUIEditSongModal";
+import MUIRemoveSongModal from "./MUIRemoveSongModal";
 import SongCard from "./SongCard";
 
 export default function SongList(props) {
 
     const { store } = useContext(PlaylistStoreContext);
+
+    //console.log(store)
+
+    let modalJSX = "";
+    if (store.isEditSongModalOpen()) {
+        modalJSX = <MUIEditSongModal />;
+    }
+    else if (store.isRemoveSongModalOpen()) {
+        modalJSX = <MUIRemoveSongModal />;
+    }
 
     return (
         <Box>
@@ -14,15 +27,18 @@ export default function SongList(props) {
             >
                 {
                     store.openedList.songs.map((song, index) => (
-                        <SongCard>
+                        <SongCard
                             id={'playlist-song-' + (index)}
                             key={'playlist-song-' + (index)}
                             index={index}
                             song={song}
-                        </SongCard>
+                        />
                     ))
                 }
             </List>
+            {
+                modalJSX
+            }
         </Box>
     )
 }

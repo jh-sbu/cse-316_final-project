@@ -2,6 +2,7 @@ import { Delete, ExpandLess, UnfoldMore } from "@mui/icons-material";
 import { Box, Button, Grid, Link, ListItem, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
+import SongList from "./SongList";
 
 export default function PlaylistCardOpened(props) {
 
@@ -37,6 +38,7 @@ export default function PlaylistCardOpened(props) {
                             </Typography>
                         </Box>
                     </Grid>
+                    <SongList />
                 </Grid>
                 <Grid item xs={2} 
                     sx={{marginTop: '1px', borderRadius: '1px'}}

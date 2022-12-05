@@ -4,6 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { AppBar, Button, Grid, TextField, Typography } from '@mui/material';
+import PlaylistStoreContext from '../store/PlaylistStore';
 
 const style = {
     position: 'absolute',
@@ -18,10 +19,12 @@ const style = {
 };
 
 export default function MUIEditSongModal() {
-    const { store } = useContext(GlobalStoreContext);
+    const { store } = useContext(PlaylistStoreContext);
     const [ title, setTitle ] = useState(store.currentSong.title);
     const [ artist, setArtist ] = useState(store.currentSong.artist);
     const [ youTubeId, setYouTubeId ] = useState(store.currentSong.youTubeId);
+
+    console.log("Tries to open");
 
     function handleConfirmEditSong() {
         let newSongData = {
@@ -29,7 +32,7 @@ export default function MUIEditSongModal() {
             artist: artist,
             youTubeId: youTubeId
         };
-        store.addUpdateSongTransaction(store.currentSongIndex, newSongData);        
+        store.addUpdateSongTransaction(store.songIndex, newSongData);        
     }
 
     function handleCancelEditSong() {
@@ -54,7 +57,7 @@ export default function MUIEditSongModal() {
 
     let testfunc = () => {
         return (
-            <Modal open={store.currentModal === "EDIT_SONG"}>
+            <Modal open={store.openModal === "EDIT_SONG"}>
                 <Box sx={style}>
                     <Grid container direction={"column"}>
                         <Grid item>

@@ -3,9 +3,11 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import React, { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import { color } from '@mui/system';
+import PlaylistStoreContext from '../store/PlaylistStore';
 
 function SongCard(props) {
-    const { store } = useContext(GlobalStoreContext);
+    //const { store } = useContext(GlobalStoreContext);
+    const { store } = useContext(PlaylistStoreContext);
     const [ draggedTo, setDraggedTo ] = useState(0);
     const { song, index } = props;
 
