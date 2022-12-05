@@ -20,10 +20,10 @@ export default function SongList(props) {
     }
 
     return (
-        <Box>
+        <Box sx={{ height: '50%', overflow: 'scroll'}}>
             <List
                 id="song-cards-list"
-                sx={{ width: '100%', bgcolor: '#e6e6e6'}}
+                sx={{ width: '100%', height: '100%', overflow: 'scroll'}}
             >
                 {
                     store.openedList.songs.map((song, index) => (
