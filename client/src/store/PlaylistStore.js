@@ -158,13 +158,45 @@ function PlaylistStoreContextProvider(props) {
             ownerEmail: auth.user.email
         };
 
-        console.log("Test");
-        console.log(newList);
+        //console.log("Test");
+        //console.log(newList);
 
         (async () => {
             const response = await api.createPlaylist(newList.name, newList.ownerEmail, newList.ownerUsername, 
                 newList.likes, newList.dislikes, newList.published, newList.publishDate, newList.listens,
                 newList.songs, newList.comments).then(() => {
+                    store.loadPlaylists();
+                });
+        })();
+    }
+
+    store.duplicatePlaylist = (playlist) => {
+        if(!auth.loggedIn) {
+            return;
+        }
+
+        let copiedList = playlist;
+
+        copiedList = {
+            name: store.getNewPlaylistName(playlist.name),
+            ownerUsername: auth.user.userName,
+            likes: 0,
+            dislikes: 0,
+            listens: 0,
+            published: false,
+            publishDate: 0,
+            songs: playlist.songs,
+            comments: [],
+            ownerEmail: auth.user.email
+        }
+
+        console.log("Creating duplicate list:");
+        console.log(copiedList);
+
+        (async () => {
+            const response = await api.createPlaylist(copiedList.name, copiedList.ownerEmail, copiedList.ownerUsername, 
+                copiedList.likes, copiedList.dislikes, copiedList.published, copiedList.publishDate, copiedList.listens,
+                copiedList.songs, copiedList.comments).then(() => {
                     store.loadPlaylists();
                 });
         })();

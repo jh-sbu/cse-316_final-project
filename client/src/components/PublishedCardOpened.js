@@ -24,7 +24,10 @@ export default function PublishedCardOpen(props) {
         store.markListForDeletion(playlist._id)
     }
 
-
+    const handleClickDuplicate = (event) => {
+        event.preventDefault();
+        store.duplicatePlaylist(playlist);
+    }
 
     return (
         <ListItem
@@ -71,7 +74,7 @@ export default function PublishedCardOpen(props) {
                 </Grid>
                 
                 <SongList />
-                <Button>
+                <Button onClick={handleClickDuplicate}>
                     Duplicate
                 </Button>
                 <PublishedListBottomBar playlist={playlist} />
