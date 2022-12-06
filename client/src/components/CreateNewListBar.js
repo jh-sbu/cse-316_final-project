@@ -27,7 +27,7 @@ export default function CreateNewListBar(props) {
     }
 
     return (
-        <Grid container flexDirection={"row"}>
+        <Grid container flexDirection={"row"} alignItems={"center"}>
             <Grid item xs={6} container justifyContent={"flex-end"}>
                 <Button onClick={handleCreateNewList}>
                     Add List

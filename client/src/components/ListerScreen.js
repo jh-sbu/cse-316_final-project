@@ -20,7 +20,7 @@ export default function ListerScreen(props) {
             <Box sx={{height: '70%'}}>
                 <ListerTopBar />
                 <Grid container sx={{height: '100%'}}>
-                    <Grid item xs={7}>
+                    <Grid item xs={7} sx={{height: '100%'}}>
                         <ListerList />
                     </Grid>
                     <Grid item xs={5}>
