@@ -22,8 +22,8 @@ const style = {
 export default function MUIDeleteModal() {
     const { store } = useContext(PlaylistStoreContext);
     let name = "";
-    if (store.listMarkedForDeletion) {
-        name = store.listMarkedForDeletion.name;
+    if (store.listToDelete) {
+        name = store.listToDelete.name;
     }
     function handleDeleteList(event) {
         store.deleteMarkedList();

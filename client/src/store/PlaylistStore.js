@@ -196,7 +196,7 @@ function PlaylistStoreContextProvider(props) {
                 ...store,
                 openedList: playlist,
                 openModal: CurrentModal.NONE,
-                songToEdit: null,
+                currentSong: null,
                 songIndex: -1
             })
         }
@@ -217,12 +217,12 @@ function PlaylistStoreContextProvider(props) {
     }
 
     store.showRemoveSongModal = (index, song) => {
-        console.log("And also here");
-        console.log(store);
+        //console.log("And also here");
+        //console.log(store);
         return setStore({
             ...store,
             openModal: CurrentModal.REMOVE_SONG,
-            songToEdit: song,
+            currentSong: song,
             songIndex: index
         })
     }

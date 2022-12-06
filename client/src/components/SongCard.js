@@ -41,7 +41,7 @@ function SongCard(props) {
     
     function handleRemoveSong(event) {
         event.preventDefault();
-        console.log("Got here");
+        //console.log("Got here");
         store.showRemoveSongModal(index, song);
     }
 
