@@ -19,9 +19,6 @@ export default function ListerScreen(props) {
         <PlaylistStoreContextProvider>
             <Box sx={{height: '70%'}}>
                 <ListerTopBar />
-                <Typography>
-                    Hello!
-                </Typography>
                 <Grid container sx={{height: '100%'}}>
                     <Grid item xs={7}>
                         <ListerList />

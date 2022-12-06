@@ -20,6 +20,17 @@ const CurrentModal = {
     REMOVE_SONG : "REMOVE_SONG"
 }
 
+const SearchMode = {
+    OWN_LISTS: "OWN_LISTS",
+    BY_USER: "BY_USER",
+    BY_NAME: "BY_NAME"
+}
+
+const SortingMethods = {
+    A_TO_Z: "A_TO_Z",
+
+}
+
 function PlaylistStoreContextProvider(props) {
 
     const [store, setStore] = useState({
@@ -31,12 +42,20 @@ function PlaylistStoreContextProvider(props) {
         currentSong: null,
         songIndex: -1,
         listToDelete: null,
-        listToDeleteId: null
+        listToDeleteId: null,
+        searchMode: SearchMode.OWN_LISTS,
+        searchValue: ""
     })
 
     const history = useHistory();
 
     const { auth } = useContext(AuthContext);
+
+    const SearchFilters = {
+        OWN_LISTS: (searchTerm) => (list) => auth.user ? list.ownerEmail === auth.user.email : true,
+        BY_USER: (searchTerm) => (list) => store.searchValue === "" ? false : list.ownerUsername.includes(searchTerm),
+        BY_NAME: (searchTerm) => (list) => store.searchValue === "" ? false : list.name.includes(searchTerm)
+    }
 
     store.loadPlaylists = () => {
         (async () => {
@@ -44,11 +63,69 @@ function PlaylistStoreContextProvider(props) {
             //console.log(response)
             if(response.data.success) { 
                 let playlists = response.data.playlists;
+                let viewedLists = playlists.filter(SearchFilters[store.searchMode](store.searchValue));
                 return setStore({
                     ...store,
                     playlists: playlists,
-                    openModal: CurrentModal.NONE
+                    openModal: CurrentModal.NONE,
+                    viewedLists: viewedLists
                 })
+            }
+        })();
+    }
+
+    store.changeSearchMode = (mode) => {
+        //console.log("It tries to change search mode yeah");
+        //console.log(mode);
+        //console.log(SearchMode[mode]);
+
+        //console.log(store);
+
+        if(!SearchMode[mode]) {
+            console.log("Illegal search mode " + mode);
+            return;
+        } 
+
+        (async () => {
+            const response = await api.getPlaylists();
+            if(response.data.success) {
+                let playlists = response.data.playlists;
+                let viewedLists = playlists.filter(SearchFilters[mode](store.searchValue));
+                //console.log("Logged in?");
+                //console.log(auth.user ? true : false);
+                //console.log(auth.user);
+                //console.log("Static test");
+                //console.log(playlists.filter((list) => !auth.user ? list.ownerEmail === auth.user.email : true))
+                //console.log("All visible lists: ");
+                //console.log(playlists);
+                //console.log("Viewed lists: ");
+                //console.log(viewedLists);
+                //console.log(SearchFilters[mode]);
+                return setStore({
+                    ...store,
+                    playlists: playlists,
+                    openModal: CurrentModal.NONE,
+                    viewedLists: viewedLists,
+                    searchMode: SearchMode[mode]
+                })
+            }
+        })();
+    }
+
+    store.changeSearchValue = (value) => {
+        (async () => {
+            const response = await api.getPlaylists();
+            if(response.data.success) {
+                let playlists = response.data.playlists;
+                let viewedLists = playlists.filter(SearchFilters[store.searchMode](value));
+                return setStore({
+                    ...store,
+                    playlists: playlists,
+                    openModal: CurrentModal.NONE,
+                    viewedLists: viewedLists,
+                    searchValue: value
+                })
+                
             }
         })();
     }

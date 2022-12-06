@@ -20,7 +20,7 @@ export default function ListerList(props) {
         <Box sx={{height: '100%', overflow: 'scroll'}}>
             <List sx={{ width: '100%', left: '0%', height: '70%', overflow: 'scroll', bgcolor: '#e6e6e6', flexDirection: 'row' }}>
                 {
-                    store.playlists.map((playlist) => (
+                    store.viewedLists.map((playlist) => (
                         <PlaylistCard playlist={playlist} key={playlist._id}/>
                     ))
                 }
