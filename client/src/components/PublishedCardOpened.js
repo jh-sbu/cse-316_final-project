@@ -3,6 +3,7 @@ import { Box, Button, Grid, IconButton, Link, ListItem, Typography } from "@mui/
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
 import ListEditBar from "./ListEditBar";
+import PublishedListBottomBar from "./PublishedListBottomBar";
 import SongList from "./SongList";
 
 export default function PublishedCardOpen(props) {
@@ -70,7 +71,10 @@ export default function PublishedCardOpen(props) {
                 </Grid>
                 
                 <SongList />
-                <ListEditBar />
+                <Button>
+                    Duplicate
+                </Button>
+                <PublishedListBottomBar playlist={playlist} />
             </Grid>
         </ListItem>
     );

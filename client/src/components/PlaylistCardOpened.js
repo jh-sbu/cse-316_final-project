@@ -33,7 +33,7 @@ export default function PlaylistCardOpened(props) {
             style = {{ width: '100%', fontSize: '48pt' }}
         >
             <Grid container direction="row">
-                <Grid item xs={6} container direction={"column"}>
+                <Grid item xs={9} container direction={"column"}>
                     <Typography variant="h5">
                         {
                             playlist.name
@@ -44,14 +44,6 @@ export default function PlaylistCardOpened(props) {
                             By: {playlist.ownerUsername}
                         </Typography>
                     </Box>
-                </Grid>
-                <Grid item xs={3}>
-                    <Typography>
-                        Likes: {playlist.likes}
-                    </Typography>
-                    <Typography>
-                        Dislikes: {playlist.dislikes}
-                    </Typography>
                 </Grid>
                 
                 <Grid item xs={3} container direction="column" alignItems={"flex-end"}>

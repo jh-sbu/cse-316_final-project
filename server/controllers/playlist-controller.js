@@ -201,8 +201,20 @@ updatePlaylist = async (req, res) => {
                     console.log("correct user!");
                     console.log("req.body.name: " + req.body.name);
 
+                    
+                    if(list.published) {
+                        return res.status(400).json({
+                            success: false,
+                            message: "Playlist is published and cannot be edited!"
+                        })
+                    }
+
                     list.name = body.playlist.name;
                     list.songs = body.playlist.songs;
+                    list.published = body.playlist.published;
+                    list.publishDate = body.playlist.publishDate;
+                    //list.likes = body.playlist.likes;
+                    //list.
                     list
                         .save()
                         .then(() => {

@@ -17,10 +17,26 @@ export default function PlaylistCard(props) {
     //    <PlaylistCardOpened playlist={playlist} />
     //    : <PlaylistCardClosed playlist={playlist} />
 
-    let CardToDisplay = store.openedList && playlist._id === store.openedList._id ?
-        <PublishedCardOpen playlist={playlist} />
-        : <PublishedCardClosed playlist={playlist} />
+    //let CardToDisplay = store.openedList && playlist._id === store.openedList._id ?
+    //    <PublishedCardOpen playlist={playlist} />
+    //    : <PublishedCardClosed playlist={playlist} />
     
+    let CardToDisplay = ""
+
+    if(playlist.published) {
+        if(store.openedList && playlist._id === store.openedList._id) {
+            CardToDisplay = <PublishedCardOpen playlist={playlist} />
+        } else {
+            CardToDisplay = <PublishedCardClosed playlist={playlist} />
+        }
+    } else {
+        if(store.openedList && playlist._id === store.openedList._id) {
+            CardToDisplay = <PlaylistCardOpened playlist={playlist} />
+        } else {
+            CardToDisplay = <PlaylistCardClosed playlist={playlist} />
+        }
+    }
+
 
     return (
         CardToDisplay

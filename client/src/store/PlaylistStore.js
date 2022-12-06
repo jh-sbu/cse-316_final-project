@@ -150,16 +150,20 @@ function PlaylistStoreContextProvider(props) {
             ownerUsername: auth.user.userName,
             likes: 0,
             dislikes: 0,
+            listens: 0,
             published: false,
+            publishDate: 0,
             songs: [],
             comments: [],
             ownerEmail: auth.user.email
         };
 
         console.log("Test");
+        console.log(newList);
 
         (async () => {
-            const response = await api.createPlaylist(newList.name, newList.ownerEmail, newList.ownerUsername, newList.likes, newList.dislikes, newList.published,
+            const response = await api.createPlaylist(newList.name, newList.ownerEmail, newList.ownerUsername, 
+                newList.likes, newList.dislikes, newList.published, newList.publishDate, newList.listens,
                 newList.songs, newList.comments).then(() => {
                     store.loadPlaylists();
                 });
@@ -458,6 +462,15 @@ function PlaylistStoreContextProvider(props) {
                 })
             }
         })();
+    }
+
+    store.publishCurrentList = () => {
+        if (store.openedList) {
+            let list = store.openedList;
+            list.published = true;
+            list.publishDate = Date.now();
+            store.updateCurrentList();
+        }
     }
 
     /*store.updateCurrentListOld = function() {

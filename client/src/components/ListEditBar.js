@@ -22,10 +22,15 @@ export default function ListEditBar(props) {
         store.addNewSong();
     }
 
+    const handlePublish = (event) => {
+        event.preventDefault();
+        store.publishCurrentList();
+    }
+
     return (
         <Grid container direction={"row"}>
             <Grid item>
-                <Button>
+                <Button onClick={handlePublish}>
                     Publish
                 </Button>
                 <IconButton onClick={handleAddSong}>
