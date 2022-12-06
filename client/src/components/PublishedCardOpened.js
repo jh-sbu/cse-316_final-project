@@ -5,7 +5,7 @@ import PlaylistStoreContext from "../store/PlaylistStore";
 import ListEditBar from "./ListEditBar";
 import SongList from "./SongList";
 
-export default function PlaylistCardOpened(props) {
+export default function PublishedCardOpen(props) {
 
     let playlist = props.playlist;
 
@@ -39,6 +39,10 @@ export default function PlaylistCardOpened(props) {
                             </Typography>
                         </Box>
                     </Grid>
+                    <SongList />
+                    <ListEditBar>
+                        
+                    </ListEditBar>
                 </Grid>
                 <Grid item xs={2} 
                     sx={{marginTop: '1px', borderRadius: '1px'}}
@@ -52,8 +56,6 @@ export default function PlaylistCardOpened(props) {
                         </Button>
                     </Grid>
                 </Grid>
-                <SongList />
-                <ListEditBar />
             </Grid>
         </ListItem>
     );

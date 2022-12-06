@@ -1,21 +1,26 @@
-import { Delete, ExpandLess, UnfoldMore } from "@mui/icons-material";
+import { Delete, ExpandMore, UnfoldMore } from "@mui/icons-material";
 import { Box, Button, Grid, Link, ListItem, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
-import ListEditBar from "./ListEditBar";
-import SongList from "./SongList";
 
-export default function PlaylistCardOpened(props) {
-
-    let playlist = props.playlist;
+export default function PublishedCardClosed(props) {
 
     const { store } = useContext(PlaylistStoreContext);
 
+    let playlist = props.playlist;
+
     //console.log(playlist);
 
-    const handleCloseList = (event) => {
+    const openList = (event) => {
+        //console.log("Trying to open list:");
+        //console.log(playlist);
         event.preventDefault();
-        store.setOpenedList(null);
+        store.setOpenedList(playlist);
+    }
+
+    const handleClickDelete = (event) => {
+        event.preventDefault();
+        store.markListForDeletion(playlist._id)
     }
 
     return (
@@ -44,16 +49,14 @@ export default function PlaylistCardOpened(props) {
                     sx={{marginTop: '1px', borderRadius: '1px'}}
                     style = {{fontSize: '12pt' }}>
                     <Grid container direction="column">
-                        <Button>
+                        <Button onClick={handleClickDelete}>
                             <Delete />
                         </Button>
-                        <Button onClick={handleCloseList}>
-                            <ExpandLess />
+                        <Button onClick={openList}>
+                            <ExpandMore />
                         </Button>
                     </Grid>
                 </Grid>
-                <SongList />
-                <ListEditBar />
             </Grid>
         </ListItem>
     );
