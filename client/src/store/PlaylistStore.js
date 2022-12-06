@@ -53,8 +53,8 @@ function PlaylistStoreContextProvider(props) {
 
     const SearchFilters = {
         OWN_LISTS: (searchTerm) => (list) => auth.user ? list.ownerEmail === auth.user.email : true,
-        BY_USER: (searchTerm) => (list) => store.searchValue === "" ? false : list.ownerUsername.includes(searchTerm),
-        BY_NAME: (searchTerm) => (list) => store.searchValue === "" ? false : list.name.includes(searchTerm)
+        BY_USER: (searchTerm) => (list) => searchTerm === "" ? false : list.ownerUsername.includes(searchTerm),
+        BY_NAME: (searchTerm) => (list) => searchTerm === "" ? false : list.name.includes(searchTerm)
     }
 
     store.loadPlaylists = () => {
@@ -113,11 +113,16 @@ function PlaylistStoreContextProvider(props) {
     }
 
     store.changeSearchValue = (value) => {
+
+        //console.log("Searching here");
+        //console.log(value);
+
         (async () => {
             const response = await api.getPlaylists();
             if(response.data.success) {
                 let playlists = response.data.playlists;
                 let viewedLists = playlists.filter(SearchFilters[store.searchMode](value));
+                //console.log(viewedLists);
                 return setStore({
                     ...store,
                     playlists: playlists,
