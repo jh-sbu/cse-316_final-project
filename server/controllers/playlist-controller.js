@@ -213,6 +213,9 @@ updatePlaylist = async (req, res) => {
                     list.songs = body.playlist.songs;
                     list.published = body.playlist.published;
                     list.publishDate = body.playlist.publishDate;
+                    list.likes = body.playlist.likes;
+                    list.dislikes = body.playlist.dislikes;
+                    list.listens = body.playlist.listens;
                     //list.likes = body.playlist.likes;
                     //list.
                     list

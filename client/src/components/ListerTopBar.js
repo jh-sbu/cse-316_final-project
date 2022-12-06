@@ -48,7 +48,7 @@ export default function ListerTopBar(props) {
     }
 
     return (
-        <Grid container sx={{ mt: 3, mb: 2 }}>
+        <Grid container sx={{ mt: 3, mb: 2 }} direction="row" alignItems={"center"}>
             <Grid item xs={4}>
                 <Button
                     type="button"
@@ -80,7 +80,7 @@ export default function ListerTopBar(props) {
                     />
                 </Box>
             </Grid>
-            <Grid item xs={4} justifyContent="flex-end" alignItems={"flex-end"}>
+            <Grid item xs={4} container justifyContent="flex-end" alignItems={"flex-end"}>
                 <ListerSortByList />
             </Grid>
         </Grid>

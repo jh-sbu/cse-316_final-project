@@ -26,9 +26,12 @@ const SearchMode = {
     BY_NAME: "BY_NAME"
 }
 
-const SortingMethods = {
-    A_TO_Z: "A_TO_Z",
-
+const SortMethods = {
+    NAME_A_Z: (list1, list2) => list1.name.localeCompare(list2.name),
+    PUBLISHED_DATE: (list1, list2) => list2.publishDate - list1.publishDate,
+    LISTENS: (list1, list2) => list2.listens - list1.listens,
+    LIKES: (list1, list2) => list2.likes - list1.likes,
+    DISLIKES: (list1, list2) => list2.dislikes - list1.dislikes
 }
 
 function PlaylistStoreContextProvider(props) {
@@ -44,7 +47,8 @@ function PlaylistStoreContextProvider(props) {
         listToDelete: null,
         listToDeleteId: null,
         searchMode: SearchMode.OWN_LISTS,
-        searchValue: ""
+        searchValue: "",
+        sortMethod: SortMethods.NAME_A_Z
     })
 
     const history = useHistory();
@@ -58,6 +62,8 @@ function PlaylistStoreContextProvider(props) {
     }
 
     store.loadPlaylists = () => {
+        console.log(store.sortMethod);
+
         (async () => {
             const response = await api.getPlaylists();
             //console.log(response)
@@ -68,7 +74,32 @@ function PlaylistStoreContextProvider(props) {
                     ...store,
                     playlists: playlists,
                     openModal: CurrentModal.NONE,
-                    viewedLists: viewedLists
+                    viewedLists: viewedLists.sort(store.sortMethod)
+                })
+            }
+        })();
+    }
+
+    store.changeSortMethod = (method) => {
+        console.log("Changing to sort method:");
+        console.log(method)
+
+        if(!SortMethods[method]) {
+            console.log("Illegal sort method " + method);
+            return;
+        }
+
+        (async () => {
+            const response = await api.getPlaylists();
+            if(response.data.success) {
+                let playlists = response.data.playlists;
+                let viewedLists = playlists.filter(SearchFilters[store.searchMode](store.searchValue)).sort(SortMethods[method])
+                return setStore({
+                    ...store,
+                    playlists: playlists,
+                    openModal: CurrentModal.NONE,
+                    viewedLists: viewedLists,
+                    sortMethod: SortMethods[method]
                 })
             }
         })();
@@ -105,7 +136,7 @@ function PlaylistStoreContextProvider(props) {
                     ...store,
                     playlists: playlists,
                     openModal: CurrentModal.NONE,
-                    viewedLists: viewedLists,
+                    viewedLists: viewedLists.sort(store.sortMethod),
                     searchMode: SearchMode[mode]
                 })
             }
@@ -127,7 +158,7 @@ function PlaylistStoreContextProvider(props) {
                     ...store,
                     playlists: playlists,
                     openModal: CurrentModal.NONE,
-                    viewedLists: viewedLists,
+                    viewedLists: viewedLists.sort(store.sortMethod),
                     searchValue: value
                 })
                 
@@ -148,9 +179,9 @@ function PlaylistStoreContextProvider(props) {
         let newList = {
             name: newListName,
             ownerUsername: auth.user.userName,
-            likes: 0,
-            dislikes: 0,
-            listens: 0,
+            likes: -1,
+            dislikes: -1,
+            listens: -1,
             published: false,
             publishDate: 0,
             songs: [],
@@ -180,9 +211,9 @@ function PlaylistStoreContextProvider(props) {
         copiedList = {
             name: store.getNewPlaylistName(playlist.name),
             ownerUsername: auth.user.userName,
-            likes: 0,
-            dislikes: 0,
-            listens: 0,
+            likes: -1,
+            dislikes: -1,
+            listens: -1,
             published: false,
             publishDate: 0,
             songs: playlist.songs,
@@ -190,8 +221,8 @@ function PlaylistStoreContextProvider(props) {
             ownerEmail: auth.user.email
         }
 
-        console.log("Creating duplicate list:");
-        console.log(copiedList);
+        //console.log("Creating duplicate list:");
+        //console.log(copiedList);
 
         (async () => {
             const response = await api.createPlaylist(copiedList.name, copiedList.ownerEmail, copiedList.ownerUsername, 
@@ -486,9 +517,11 @@ function PlaylistStoreContextProvider(props) {
                 let updatedLists = store.playlists;
                 let indexToFind = updatedLists.findIndex(x => x._id === store.openedList._id)//store.openedList._id;
                 updatedLists[indexToFind] = store.openedList;
+                let viewedLists = updatedLists.filter(SearchFilters[store.searchMode](store.searchValue)).sort(store.sortMethod);
                 return setStore({
                     ...store,
                     playlists: updatedLists,
+                    viewedLists: viewedLists,
                     openedList: store.openedList,
                     openModal: CurrentModal
                 })
@@ -501,6 +534,9 @@ function PlaylistStoreContextProvider(props) {
             let list = store.openedList;
             list.published = true;
             list.publishDate = Date.now();
+            list.likes = 0;
+            list.dislikes = 0;
+            list.listens = 0;
             store.updateCurrentList();
         }
     }
