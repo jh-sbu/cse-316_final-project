@@ -1,4 +1,4 @@
-import { Box, List } from "@mui/material";
+import { Box, Grid, List } from "@mui/material";
 import { useContext } from "react"
 import PlaylistStoreContext from "../store/PlaylistStore"
 import MUIEditSongModal from "./MUIEditSongModal";
@@ -20,7 +20,7 @@ export default function SongList(props) {
     }
 
     return (
-        <Box sx={{ height: '50%', overflow: 'scroll'}}>
+        <Grid container sx={{ height: '100%', overflow: 'scroll'}}>
             <List
                 id="song-cards-list"
                 sx={{ width: '100%', height: '100%', overflow: 'scroll'}}
@@ -39,6 +39,6 @@ export default function SongList(props) {
             {
                 modalJSX
             }
-        </Box>
+        </Grid>
     )
 }

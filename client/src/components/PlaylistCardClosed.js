@@ -1,5 +1,5 @@
 import { Delete, ExpandMore, UnfoldMore } from "@mui/icons-material";
-import { Box, Button, Grid, Link, ListItem, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, Link, ListItem, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
 
@@ -47,15 +47,13 @@ export default function PlaylistCardClosed(props) {
                 </Grid>
                 <Grid item xs={2} 
                     sx={{marginTop: '1px', borderRadius: '1px'}}
-                    style = {{fontSize: '12pt' }}>
-                    <Grid container direction="column">
-                        <Button onClick={handleClickDelete}>
+                    style = {{fontSize: '12pt' }} container direction="column" alignItems={"flex-end"}>
+                        <IconButton onClick={handleClickDelete}>
                             <Delete />
-                        </Button>
-                        <Button onClick={openList}>
+                        </IconButton>
+                        <IconButton onClick={openList}>
                             <ExpandMore />
-                        </Button>
-                    </Grid>
+                        </IconButton>
                 </Grid>
             </Grid>
         </ListItem>

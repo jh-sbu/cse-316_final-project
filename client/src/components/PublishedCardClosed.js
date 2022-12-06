@@ -1,5 +1,5 @@
-import { Delete, ExpandMore, UnfoldMore } from "@mui/icons-material";
-import { Box, Button, Grid, Link, ListItem, Typography } from "@mui/material";
+import { Delete, ExpandMore, ThumbDown, ThumbUp, UnfoldMore } from "@mui/icons-material";
+import { Box, Button, Grid, IconButton, Link, ListItem, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
 
@@ -31,7 +31,7 @@ export default function PublishedCardClosed(props) {
             style = {{ width: '100%', fontSize: '48pt' }}
         >
             <Grid container direction="row">
-                <Grid item xs={10}>
+                <Grid item xs={6}>
                     <Grid container direction="column">
                         <Typography variant="h5">
                             {
@@ -45,17 +45,27 @@ export default function PublishedCardClosed(props) {
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid item xs={2} 
-                    sx={{marginTop: '1px', borderRadius: '1px'}}
-                    style = {{fontSize: '12pt' }}>
-                    <Grid container direction="column">
-                        <Button onClick={handleClickDelete}>
-                            <Delete />
-                        </Button>
-                        <Button onClick={openList}>
-                            <ExpandMore />
-                        </Button>
-                    </Grid>
+                <Grid item xs={3} container direction="row" justifyContent={"flex-end"}>
+                    <Typography>
+                        <IconButton>
+                            <ThumbUp />
+                        </IconButton>
+                         {playlist.likes}
+                    </Typography>
+                    <Typography>
+                        <IconButton>
+                            <ThumbDown />
+                        </IconButton> 
+                        {playlist.dislikes}
+                    </Typography>
+                </Grid>
+                <Grid item xs={3} container direction="column" alignItems={"flex-end"}>
+                    <IconButton onClick={handleClickDelete}>
+                        <Delete />
+                    </IconButton>
+                    <IconButton onClick={openList}>
+                        <ExpandMore />
+                    </IconButton>
                 </Grid>
             </Grid>
         </ListItem>

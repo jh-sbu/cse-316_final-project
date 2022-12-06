@@ -1,5 +1,5 @@
-import { Delete, ExpandLess, UnfoldMore } from "@mui/icons-material";
-import { Box, Button, Grid, Link, ListItem, Typography } from "@mui/material";
+import { Delete, ExpandLess, ThumbDown, ThumbUp, UnfoldMore } from "@mui/icons-material";
+import { Box, Button, Grid, IconButton, Link, ListItem, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
 import ListEditBar from "./ListEditBar";
@@ -23,6 +23,8 @@ export default function PublishedCardOpen(props) {
         store.markListForDeletion(playlist._id)
     }
 
+
+
     return (
         <ListItem
             id = {playlist.id}
@@ -31,36 +33,44 @@ export default function PublishedCardOpen(props) {
             style = {{ width: '100%', fontSize: '48pt' }}
         >
             <Grid container direction="row">
-                <Grid item xs={10}>
-                    <Grid container direction="column">
-                        <Typography variant="h5">
-                            {
-                                playlist.name
-                            }
+                <Grid item xs={6} container direction={"column"}>
+                    <Typography variant="h5">
+                        {
+                            playlist.name
+                        }
+                    </Typography>
+                    <Box>
+                        <Typography>
+                            By: {playlist.ownerUsername}
                         </Typography>
-                        <Box>
-                            <Typography>
-                                By: {playlist.ownerUsername}
-                            </Typography>
-                        </Box>
-                    </Grid>
-                    <SongList />
-                    <ListEditBar>
-                        
-                    </ListEditBar>
+                    </Box>
                 </Grid>
-                <Grid item xs={2} 
-                    sx={{marginTop: '1px', borderRadius: '1px'}}
-                    style = {{fontSize: '12pt' }}>
-                    <Grid container direction="column">
-                        <Button onClick={handleClickDelete}>
-                            <Delete />
-                        </Button>
-                        <Button onClick={handleCloseList}>
-                            <ExpandLess />
-                        </Button>
-                    </Grid>
+                <Grid item xs={3} container direction="row" justifyContent={"flex-end"}>
+                    <Typography>
+                        <IconButton>
+                            <ThumbUp />
+                        </IconButton>
+                         {playlist.likes}
+                    </Typography>
+                    <Typography>
+                        <IconButton>
+                            <ThumbDown />
+                        </IconButton> 
+                        {playlist.dislikes}
+                    </Typography>
                 </Grid>
+                
+                <Grid item xs={3} container direction="column" alignItems={"flex-end"}>
+                    <IconButton onClick={handleClickDelete}>
+                        <Delete />
+                    </IconButton>
+                    <IconButton onClick={handleCloseList}>
+                        <ExpandLess />
+                    </IconButton>
+                </Grid>
+                
+                <SongList />
+                <ListEditBar />
             </Grid>
         </ListItem>
     );
