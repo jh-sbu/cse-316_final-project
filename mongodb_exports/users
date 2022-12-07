@@ -1,0 +1,367 @@
+[{
+  "_id": {
+    "$oid": "638a61834ca935161c897988"
+  },
+  "playlists": [
+    {
+      "$oid": "638a69097317072782f71ab2"
+    },
+    {
+      "$oid": "638d319c03965f0513136f4b"
+    },
+    {
+      "$oid": "638e2e038227fc16599bcaa3"
+    },
+    {
+      "$oid": "638e3d2b9d90840cf15c9deb"
+    },
+    {
+      "$oid": "638e3d8a8d97b015e13da22f"
+    },
+    {
+      "$oid": "638e3e778d97b015e13da23e"
+    },
+    {
+      "$oid": "638e3f288d97b015e13da246"
+    },
+    {
+      "$oid": "638e4019218b8c197f740185"
+    },
+    {
+      "$oid": "638e40de218b8c197f74018b"
+    },
+    {
+      "$oid": "638e4238218b8c197f740197"
+    },
+    {
+      "$oid": "638e4308218b8c197f74019d"
+    },
+    {
+      "$oid": "638e436d218b8c197f7401a6"
+    },
+    {
+      "$oid": "638e46da51a2a20732b3f0ec"
+    },
+    {
+      "$oid": "638e46de51a2a20732b3f0ff"
+    },
+    {
+      "$oid": "638e470f51a2a20732b3f138"
+    },
+    {
+      "$oid": "638e475351a2a20732b3f13f"
+    },
+    {
+      "$oid": "638e475351a2a20732b3f143"
+    },
+    {
+      "$oid": "638e47c851a2a20732b3f14d"
+    },
+    {
+      "$oid": "638e47ca51a2a20732b3f153"
+    },
+    {
+      "$oid": "638e48d051a2a20732b3f19d"
+    },
+    {
+      "$oid": "638e48d151a2a20732b3f1a3"
+    },
+    {
+      "$oid": "638e79a651a2a20732b3f45f"
+    },
+    {
+      "$oid": "638e7f7450e7ce878cde969e"
+    },
+    {
+      "$oid": "638e7f7650e7ce878cde96a4"
+    },
+    {
+      "$oid": "638e7fac50e7ce878cde96b7"
+    },
+    {
+      "$oid": "638e7fd050e7ce878cde96c0"
+    },
+    {
+      "$oid": "638e95d250e7ce878cde98b3"
+    },
+    {
+      "$oid": "638e95d450e7ce878cde98b9"
+    },
+    {
+      "$oid": "638e95d650e7ce878cde98bf"
+    },
+    {
+      "$oid": "638fad8680df5651d1802e38"
+    },
+    {
+      "$oid": "638fb35eb3b1045ab7fec1bf"
+    },
+    {
+      "$oid": "638fb3c3b3b1045ab7fec1c9"
+    },
+    {
+      "$oid": "638fb42fb3b1045ab7fec1cf"
+    },
+    {
+      "$oid": "638fb5406f46445cfe9cc474"
+    },
+    {
+      "$oid": "638fb5b86f46445cfe9cc493"
+    },
+    {
+      "$oid": "638fb6ec6f46445cfe9cc4ea"
+    },
+    {
+      "$oid": "638fb7189a06bc6230d37d85"
+    },
+    {
+      "$oid": "638fb8ef9a06bc6230d37db0"
+    },
+    {
+      "$oid": "638fbaf59a06bc6230d37dd8"
+    },
+    {
+      "$oid": "638fbbda9a06bc6230d37e2c"
+    },
+    {
+      "$oid": "638fbef89a06bc6230d37e5e"
+    },
+    {
+      "$oid": "638fbeff9a06bc6230d37e68"
+    },
+    {
+      "$oid": "638fbf059a06bc6230d37e6e"
+    },
+    {
+      "$oid": "638fc3b29a06bc6230d37f11"
+    },
+    {
+      "$oid": "638fc3b39a06bc6230d37f17"
+    },
+    {
+      "$oid": "638fc3b39a06bc6230d37f1d"
+    },
+    {
+      "$oid": "638fc3b49a06bc6230d37f23"
+    },
+    {
+      "$oid": "638fc44181d86f8bd0b1dc5c"
+    },
+    {
+      "$oid": "638fc44281d86f8bd0b1dc62"
+    },
+    {
+      "$oid": "638fc44381d86f8bd0b1dc68"
+    },
+    {
+      "$oid": "638fc46f81d86f8bd0b1dc87"
+    },
+    {
+      "$oid": "638fc4d681d86f8bd0b1dcb9"
+    },
+    {
+      "$oid": "638fc4dd81d86f8bd0b1dcc9"
+    },
+    {
+      "$oid": "638fc54981d86f8bd0b1dce2"
+    },
+    {
+      "$oid": "638fc55081d86f8bd0b1dcea"
+    },
+    {
+      "$oid": "638fc58581d86f8bd0b1dd0c"
+    },
+    {
+      "$oid": "638fc58781d86f8bd0b1dd12"
+    },
+    {
+      "$oid": "6390f7ae1f0b0f1d02ad4bff"
+    },
+    {
+      "$oid": "6390f8331f0b0f1d02ad4c49"
+    },
+    {
+      "$oid": "6391089e1f0b0f1d02ad4cf6"
+    },
+    {
+      "$oid": "639109151f0b0f1d02ad4d44"
+    },
+    {
+      "$oid": "639109171f0b0f1d02ad4d4a"
+    }
+  ],
+  "likedPlaylists": [],
+  "dislikedPlaylists": [],
+  "userName": "aa",
+  "firstName": "bb",
+  "lastName": "cc",
+  "email": "dd",
+  "passwordHash": "$2a$10$lsW/v4A8A3lF60V6eGTn4Oe1wfxxvoMYkV7Od0xAKIwC1hgCNJI36",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670013315371"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670449431444"
+    }
+  },
+  "__v": 67
+},{
+  "_id": {
+    "$oid": "638f7e39487fbf0a32c38360"
+  },
+  "playlists": [
+    {
+      "$oid": "638f7ec0487fbf0a32c38369"
+    },
+    {
+      "$oid": "638f7ec1487fbf0a32c3836f"
+    },
+    {
+      "$oid": "638f7ec2487fbf0a32c38375"
+    },
+    {
+      "$oid": "638f854a487fbf0a32c383a8"
+    },
+    {
+      "$oid": "638f854b487fbf0a32c383ae"
+    },
+    {
+      "$oid": "638f854b487fbf0a32c383b4"
+    },
+    {
+      "$oid": "638f854c487fbf0a32c383ba"
+    },
+    {
+      "$oid": "638f854e487fbf0a32c383c0"
+    },
+    {
+      "$oid": "638f85f4487fbf0a32c38401"
+    },
+    {
+      "$oid": "638f85f5487fbf0a32c38407"
+    },
+    {
+      "$oid": "638f85f5487fbf0a32c3840d"
+    },
+    {
+      "$oid": "638f8659487fbf0a32c38444"
+    },
+    {
+      "$oid": "638f865a487fbf0a32c3844a"
+    },
+    {
+      "$oid": "638f8680487fbf0a32c38469"
+    },
+    {
+      "$oid": "638f8681487fbf0a32c3846f"
+    },
+    {
+      "$oid": "638f86c2487fbf0a32c3847a"
+    },
+    {
+      "$oid": "638f86c4487fbf0a32c38480"
+    },
+    {
+      "$oid": "638f86c5487fbf0a32c38486"
+    },
+    {
+      "$oid": "638f86c5487fbf0a32c3848c"
+    },
+    {
+      "$oid": "638fae2480df5651d1802e65"
+    },
+    {
+      "$oid": "638fae2580df5651d1802e6b"
+    },
+    {
+      "$oid": "638fae2580df5651d1802e71"
+    },
+    {
+      "$oid": "638fae2580df5651d1802e77"
+    },
+    {
+      "$oid": "638fbb2f9a06bc6230d37ded"
+    },
+    {
+      "$oid": "638fdbc681d86f8bd0b1de1a"
+    },
+    {
+      "$oid": "6390d2081f0b0f1d02ad3fd9"
+    },
+    {
+      "$oid": "6390d20d1f0b0f1d02ad3ff0"
+    },
+    {
+      "$oid": "6390d2bb1f0b0f1d02ad4028"
+    },
+    {
+      "$oid": "6390e2921f0b0f1d02ad452c"
+    },
+    {
+      "$oid": "6390e2931f0b0f1d02ad4532"
+    },
+    {
+      "$oid": "6390e2931f0b0f1d02ad4538"
+    },
+    {
+      "$oid": "63911adc1f0b0f1d02ad4e91"
+    },
+    {
+      "$oid": "63911ae01f0b0f1d02ad4e99"
+    },
+    {
+      "$oid": "63911ae31f0b0f1d02ad4ea1"
+    }
+  ],
+  "likedPlaylists": [],
+  "dislikedPlaylists": [],
+  "userName": "xx",
+  "firstName": "zz",
+  "lastName": "yy",
+  "email": "ww",
+  "passwordHash": "$2a$10$UkFbz/.eurGLr3gpVbWjGOew95uSL8o3Hz5ldW9DsA.pDSl1ZHZ0K",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670348345884"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670453987439"
+    }
+  },
+  "__v": 34
+},{
+  "_id": {
+    "$oid": "638fd4be81d86f8bd0b1dd9b"
+  },
+  "playlists": [
+    {
+      "$oid": "638fd4c681d86f8bd0b1dd9f"
+    },
+    {
+      "$oid": "638fd4c681d86f8bd0b1dda5"
+    }
+  ],
+  "likedPlaylists": [],
+  "dislikedPlaylists": [],
+  "userName": "11",
+  "firstName": "22",
+  "lastName": "33",
+  "email": "44",
+  "passwordHash": "$2a$10$i4h0YWE5vcjT/BEzCN4wRe8f3qx2j6D2ZJOEPItBRGbFMTywbbFZe",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670370494935"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670370502688"
+    }
+  },
+  "__v": 2
+}]

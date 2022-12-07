@@ -1,12 +1,15 @@
 import { Delete, ExpandMore, ThumbDown, ThumbUp, UnfoldMore } from "@mui/icons-material";
 import { Box, Button, Grid, IconButton, Link, ListItem, ListItemButton, Typography } from "@mui/material";
 import { useContext } from "react";
+import AuthContext from "../auth";
 import PlaylistStoreContext from "../store/PlaylistStore";
 import PublishedListBottomBar from "./PublishedListBottomBar";
 
 export default function PublishedCardClosed(props) {
 
     const { store } = useContext(PlaylistStoreContext);
+
+    const { auth } = useContext(AuthContext);
 
     let playlist = props.playlist;
 
@@ -21,6 +24,9 @@ export default function PublishedCardClosed(props) {
 
     const handleClickDelete = (event) => {
         event.stopPropagation();
+        if(!auth.loggedIn) {
+            return
+        }
         store.markListForDeletion(playlist._id)
     }
 
@@ -56,6 +62,16 @@ export default function PublishedCardClosed(props) {
         //console.log("Disliking songs not implemented yet");
 
         store.likeDislike("dislike", playlist);
+    }
+
+    let trashCan = ""
+
+    if(auth.loggedIn && auth.user.userName === playlist.ownerUsername) {
+        trashCan = (
+            <IconButton onClick={handleClickDelete}>
+                <Delete />
+            </IconButton>
+        )
     }
 
     return (
@@ -100,9 +116,9 @@ export default function PublishedCardClosed(props) {
                         </Typography>
                     </Grid>
                     <Grid item xs={3} container direction="column" alignItems={"flex-end"}>
-                        <IconButton onClick={handleClickDelete}>
-                            <Delete />
-                        </IconButton>
+                        {
+                            trashCan
+                        }
                         <IconButton onClick={openList}>
                             <ExpandMore />
                         </IconButton>
