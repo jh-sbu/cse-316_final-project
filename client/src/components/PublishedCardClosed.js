@@ -76,17 +76,17 @@ export default function PublishedCardClosed(props) {
 
     let likeDislikeButtons = ""
 
-    if(auth.loggedIn) {
+    if(true || auth.loggedIn) {
         likeDislikeButtons = (
             <Fragment>
                 <Typography>
-                    <IconButton onClick={handleClickLike}>
+                    <IconButton onClick={handleClickLike} disabled={!auth.loggedIn}>
                         <ThumbUp />
                     </IconButton>
                     {playlist.likes}
                 </Typography>
                 <Typography>
-                    <IconButton onClick={handleClickDislike}>
+                    <IconButton onClick={handleClickDislike} disabled={!auth.loggedIn}>
                         <ThumbDown />
                     </IconButton> 
                     {playlist.dislikes}

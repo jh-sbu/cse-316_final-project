@@ -195,11 +195,14 @@ updatePublishedPlaylist = async (req, res) => {
                 message: 'Playlist has not been published yet!'
             })
         }
-        
-        playlist.likes = body.playlist.likes;
-        playlist.dislikes = body.playlist.dislikes;
+
         playlist.listens = body.playlist.listens;
-        playlist.comments = body.playlist.comments;
+
+        if(req.userId) {
+            playlist.likes = body.playlist.likes;
+            playlist.dislikes = body.playlist.dislikes;
+            playlist.comments = body.playlist.comments;
+        }
 
         playlist
             .save()

@@ -1,10 +1,13 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
+import AuthContext from "../auth";
 import GlobalStoreContext from "../store";
 import PlaylistStoreContext from "../store/PlaylistStore";
 
 export default function CreateNewListBar(props) {
     const { store } = useContext(PlaylistStoreContext)
+
+    const { auth } = useContext(AuthContext);
 
     const handleCreateNewList = (event) => {
         event.stopPropagation();
@@ -27,19 +30,36 @@ export default function CreateNewListBar(props) {
         }
     }
 
+    let retVal = (
+        <Grid item xs={12} container justifyContent={"center"}>
+            <Typography>
+                { bottomMessage }
+            </Typography>
+        </Grid>
+    )
+
+    if(auth.loggedIn && store.searchMode === "OWN_LISTS") {
+        retVal = (
+            <Fragment>
+                <Grid item xs={6} container justifyContent={"flex-end"}>
+                    <Button onClick={handleCreateNewList}>
+                        Add List
+                    </Button>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography>
+                        { bottomMessage }
+                    </Typography>
+                </Grid>
+            </Fragment>
+        )
+    }
+
     return (
         <Grid container flexDirection={"row"} alignItems={"center"}>
-            <Grid item xs={6} container justifyContent={"flex-end"}>
-                <Button onClick={handleCreateNewList}>
-                    Add List
-                </Button>
-            </Grid>
-            <Grid item xs={6}>
-                <Typography>
-                    { bottomMessage }
-                </Typography>
-            </Grid>
+            {
+                retVal
+            }
         </Grid>
-        
     )
 }
