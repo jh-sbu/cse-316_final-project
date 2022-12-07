@@ -621,6 +621,21 @@ function PlaylistStoreContextProvider(props) {
         store.updatePublishedList(list);
     }
 
+    store.likeDislike = (likeVal, list) => {
+        if(!auth.loggedIn) {
+            console.log("Not logged in, cannot like or dislike!");
+            console.log(likeVal);
+        }
+
+        if(likeVal === "like") {
+            list.likes += 1;
+        } else if(likeVal === "dislike") {
+            list.dislikes += 1;
+        }
+
+        store.updatePublishedList(list);
+    }
+
     store.updatePublishedList = (list) => {
         (async () => {
             const response = await api.updatePublishedListById(list._id, list);

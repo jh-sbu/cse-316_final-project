@@ -44,6 +44,20 @@ export default function PublishedCardClosed(props) {
         bgColorSelected = "#008394"
     }
 
+    const handleClickLike = (event) => {
+        event.stopPropagation();
+        //console.log("Liking songs not implemented yet");
+
+        store.likeDislike("like", playlist);
+    }
+
+    const handleClickDislike = (event) => {
+        event.stopPropagation();
+        //console.log("Disliking songs not implemented yet");
+
+        store.likeDislike("dislike", playlist);
+    }
+
     return (
         <ListItemButton
             id = {playlist.id}
@@ -73,13 +87,13 @@ export default function PublishedCardClosed(props) {
                     </Grid>
                     <Grid item xs={3} container direction="row" justifyContent={"flex-end"}>
                         <Typography>
-                            <IconButton>
+                            <IconButton onClick={handleClickLike}>
                                 <ThumbUp />
                             </IconButton>
                             {playlist.likes}
                         </Typography>
                         <Typography>
-                            <IconButton>
+                            <IconButton onClick={handleClickDislike}>
                                 <ThumbDown />
                             </IconButton> 
                             {playlist.dislikes}

@@ -40,6 +40,20 @@ export default function PublishedCardOpen(props) {
         store.changeSearchAndValue("BY_USER", playlist.ownerUsername)
     }
 
+    const handleClickLike = (event) => {
+        event.stopPropagation();
+        //console.log("Liking songs not implemented yet");
+
+        store.likeDislike("like", playlist);
+    }
+
+    const handleClickDislike = (event) => {
+        event.stopPropagation();
+        //console.log("Disliking songs not implemented yet");
+
+        store.likeDislike("dislike", playlist);
+    }
+
     let bgColor = "#e1e4cb";
     let bgColorSelected = "#b28704";
 
@@ -74,13 +88,13 @@ export default function PublishedCardOpen(props) {
                 </Grid>
                 <Grid item xs={3} container direction="row" justifyContent={"flex-end"}>
                     <Typography>
-                        <IconButton>
+                        <IconButton onClick={handleClickLike}>
                             <ThumbUp />
                         </IconButton>
                          {playlist.likes}
                     </Typography>
                     <Typography>
-                        <IconButton>
+                        <IconButton onClick={handleClickDislike}>
                             <ThumbDown />
                         </IconButton> 
                         {playlist.dislikes}
