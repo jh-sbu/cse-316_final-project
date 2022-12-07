@@ -7,23 +7,36 @@ export default function CommentList(props) {
 
     const { store } = useContext(PlaylistStoreContext);
 
-    let commentList = "Play a list to see its comments!";
-
+    let commentList = (
+        <Typography>
+            Play a list to see its comments!
+        </Typography>
+    )
+    
     console.log("It gets here");
 
     if(store.playingList) {
-        commentList = (
-            <List sx={{ height: '100%'}}>
-                {
-                    store.playingList.comments.map((song, index) => {
-                        console.log("In the loop");
-                        return (
-                            <CommentCard comment={song} index={index} key={index} />
-                        )
-                    })
-                }
-            </List>
-        )
+        if(store.playingList.published) {
+            commentList = (
+                <List sx={{ height: '100%', flexDirection: 'row'}}>
+                    {
+                        store.playingList.comments.map((song, index) => {
+                            console.log("In the loop");
+                            return (
+                                <CommentCard comment={song} index={index} key={index} />
+                            )
+                        })
+                    }
+                </List>
+                
+            )
+        } else {
+            commentList = (
+                <Typography>
+                    You can only comment on a published list!
+                </Typography>
+            )
+        }
     }
 
     //console.log(commentList);

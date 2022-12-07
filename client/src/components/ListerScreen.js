@@ -19,11 +19,11 @@ export default function ListerScreen(props) {
         <PlaylistStoreContextProvider>
             <Box sx={{height: '70%'}}>
                 <ListerTopBar />
-                <Grid container sx={{height: '100%'}}>
+                <Grid container direction="row" sx={{height: '100%'}}>
                     <Grid item xs={7} sx={{height: '100%'}}>
                         <ListerList />
                     </Grid>
-                    <Grid item xs={5}>
+                    <Grid item xs={5} container sx={{height: '100%'}}>
                         <PlayerCommentBox videoEndCallback={handleVideoEnd}/>
                     </Grid>
                 </Grid>

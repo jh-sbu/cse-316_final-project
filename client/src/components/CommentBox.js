@@ -18,24 +18,32 @@ export default function CommentBox(props) {
         console.log("Comment: ");
         console.log(commentVal);
 
-        store.makeComment(commentVal, store.openedList)
+        store.makeComment(commentVal, store.playingList)
+    }
+
+    let formBox = ""
+
+    if(store.playingList && store.playingList.published) {
+        formBox = (
+            <Box component="form" noValidate onSubmit={handleSubmitComment}>
+                <TextField
+                    margin="normal"
+                    fullWidth
+                    id="commentField"
+                    label="Comment"
+                    name="commentField"
+                />
+            </Box>
+        )
     }
 
     return (
         <Grid container direction="column" sx={{height: '100%', width: '100%'}} alignItems={'flex-start'}>
-            <Grid item xs={2} container >
+            <Grid item xs={9} container sx={{height: '100%', width: '100%', overflow: 'scroll'}}>
                 <CommentList />
             </Grid>
             <Grid item xs={3}>
-                <Box component="form" noValidate onSubmit={handleSubmitComment}>
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        id="commentField"
-                        label="Comment"
-                        name="commentField"
-                    />
-                </Box>
+                {formBox}
             </Grid>
         </Grid>
     )

@@ -12,6 +12,8 @@ export default function PlayerCommentBox(props) {
 
     let window = onPlayer ? <YoutubePlayer videoEndCallback={props.videoEndCallback} /> : <CommentBox />
 
+    //window = <CommentBox />;
+
     const handlePlayerButton = (event) => {
         setOnPlayer(true);
     }
@@ -31,18 +33,20 @@ export default function PlayerCommentBox(props) {
     }
 
     return (
-        <Grid container direction={"column"} sx={{height: '100%', overflow: 'scroll', width: '100%'}} alignItems={'flex-start'}>
-            <Grid item xs={1}> 
-                <Box>
+        <Grid container direction={"column"} sx={{height: '100%', width: '100%'}} alignItems={'flex-start'}>
+            <Grid item xs={1} container direction={"row"}> 
+                <Grid item xs={6}>
                     <Button onClick={handlePlayerButton}>
                         Player
                     </Button>
+                </Grid>
+                <Grid item xs={6}>
                     {
                         commentButton
                     }
-                </Box>
+                </Grid>
             </Grid>
-            <Grid item xs={11}>
+            <Grid item xs={1} container sx={{height: '100%', width: '100%'}}>
             {
                 window
             }

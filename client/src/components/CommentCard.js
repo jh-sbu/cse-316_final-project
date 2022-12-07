@@ -14,14 +14,14 @@ export default function CommentCard(props) {
         <ListItem
             id = {'comment-' + index + '-card'}
             key={index}
-            sx={{ marginTop: '15px', display: 'flex', p: 1, borderRadius: '10px', bgcolor: '#e1e4cb'}}
+            sx={{ marginTop: '15px', display: 'flex', p: 1, borderRadius: '10px', bgcolor: '#e1e4cb', width: '100%'}}
             style={{width: '100%', fontSize: '28pt'}}
         >
             <Grid container direction="column" alignItems={"flex-start"}>
                 <Typography>
                     {comment.userName}
                 </Typography>
-                <Typography>
+                <Typography sx={{width: '100%', overflow: "scroll"}}>
                     {comment.comment}
                 </Typography>
             </Grid>
