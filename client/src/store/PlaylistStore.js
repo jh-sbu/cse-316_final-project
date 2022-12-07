@@ -81,6 +81,17 @@ function PlaylistStoreContextProvider(props) {
         })();
     }
 
+    store.changeCurrentlyPlaying = (newIndex) => {
+        if(store.playingList) {
+            if(newIndex < store.playingList.songs.length && newIndex >= 0) {
+                return setStore({
+                    ...store,
+                    playingIndex: newIndex
+                });
+            }
+        }
+    }
+
     store.changeSortMethod = (method) => {
         console.log("Changing to sort method:");
         console.log(method)

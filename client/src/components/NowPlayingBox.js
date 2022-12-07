@@ -15,9 +15,11 @@ export default function NowPlayingBox(props) {
 
     if(store.playingList) {
         playlistName = store.playingList.name;
-        songNum = store.playingIndex + 1;
+        if(store.playingIndex < store.playingList.songs.length) {
+            songNum = store.playingIndex + 1;
         songTitle = store.playingList.songs[store.playingIndex].title;
         artistName = store.playingList.songs[store.playingIndex].artist;
+        }
     }
 
     return (
@@ -40,7 +42,7 @@ export default function NowPlayingBox(props) {
                         Artist: {artistName}
                     </Typography>
                 </Grid>
-                <PlayControlBar />
+                <PlayControlBar player={props.player}/>
             </Grid>
         </Box>
     )
