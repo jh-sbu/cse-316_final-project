@@ -56,7 +56,7 @@ function PlaylistStoreContextProvider(props) {
     const { auth } = useContext(AuthContext);
 
     const SearchFilters = {
-        OWN_LISTS: (searchTerm) => (list) => auth.user ? list.ownerEmail === auth.user.email : true,
+        OWN_LISTS: (searchTerm) => (list) => auth.user ? list.ownerEmail === auth.user.email : false,
         BY_USER: (searchTerm) => (list) => searchTerm === "" ? false : list.ownerUsername.includes(searchTerm),
         BY_NAME: (searchTerm) => (list) => searchTerm === "" ? false : list.name.includes(searchTerm)
     }

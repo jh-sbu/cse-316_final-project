@@ -1,11 +1,14 @@
 import { Box, Button, Grid } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../auth";
 import CommentBox from "./CommentBox";
 import YoutubePlayer from "./YoutubePlayer";
 
 export default function PlayerCommentBox(props) {
 
     const [onPlayer, setOnPlayer] = useState(true);
+
+    const { auth } = useContext(AuthContext);
 
     let window = onPlayer ? <YoutubePlayer videoEndCallback={props.videoEndCallback} /> : <CommentBox />
 
@@ -17,19 +20,35 @@ export default function PlayerCommentBox(props) {
         setOnPlayer(false);
     }
 
+    let commentButton = ""
+
+    if(auth.loggedIn) {
+        commentButton = (
+            <Button onClick={handleCommentsButton}>
+                Comments
+            </Button>
+        )
+    }
+
     return (
-        <Grid container flexDirection={"column"}>
+        <Grid container direction={"column"} sx={{height: '100%', overflow: 'scroll', width: '100%'}} alignItems={'flex-start'}>
+            <Grid item sx={1}>
+
+            
             <Box>
                 <Button onClick={handlePlayerButton}>
                     Player
                 </Button>
-                <Button onClick={handleCommentsButton}>
-                    Comments
-                </Button>
+                {
+                    commentButton
+                }
             </Box>
+            </Grid>
+            <Grid item sx={11}>
             {
                 window
             }
+            </Grid>
         </Grid>
     )
 }
