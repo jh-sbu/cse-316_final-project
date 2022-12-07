@@ -1,5 +1,5 @@
 import { Delete, ExpandMore, ThumbDown, ThumbUp, UnfoldMore } from "@mui/icons-material";
-import { Box, Button, Grid, IconButton, Link, ListItem, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, Link, ListItem, ListItemButton, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
 import PublishedListBottomBar from "./PublishedListBottomBar";
@@ -15,21 +15,29 @@ export default function PublishedCardClosed(props) {
     const openList = (event) => {
         //console.log("Trying to open list:");
         //console.log(playlist);
-        event.preventDefault();
+        event.stopPropagation();
         store.setOpenedList(playlist);
     }
 
     const handleClickDelete = (event) => {
-        event.preventDefault();
+        event.stopPropagation();
         store.markListForDeletion(playlist._id)
     }
 
+    const handleClickPlaylist = (event) => {
+        console.log("Received click on playlist");
+        event.stopPropagation();
+        //console.log("Playing playlist not implemented yet");
+        store.playPlaylist(playlist);
+    }
+
     return (
-        <ListItem
+        <ListItemButton
             id = {playlist.id}
             key = {playlist.id}
             sx = {{ marginTop: '15px', display: 'flex', p: 1, borderRadius: '30px', bgcolor: '#e1e4cb', '&:hover': {bgcolor: '#b28704'}}}
             style = {{ width: '100%', fontSize: '48pt' }}
+            onClick = {handleClickPlaylist}
         >
             <Grid container direction="column">
                 <Grid container direction="row">
@@ -72,6 +80,6 @@ export default function PublishedCardClosed(props) {
                 </Grid>
                 <PublishedListBottomBar playlist={playlist} />
             </Grid>
-        </ListItem>
+        </ListItemButton>
     );
 }

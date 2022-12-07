@@ -32,17 +32,15 @@ export default function PlayerCommentBox(props) {
 
     return (
         <Grid container direction={"column"} sx={{height: '100%', overflow: 'scroll', width: '100%'}} alignItems={'flex-start'}>
-            <Grid item xs={1}>
-
-            
-            <Box>
-                <Button onClick={handlePlayerButton}>
-                    Player
-                </Button>
-                {
-                    commentButton
-                }
-            </Box>
+            <Grid item xs={1}> 
+                <Box>
+                    <Button onClick={handlePlayerButton}>
+                        Player
+                    </Button>
+                    {
+                        commentButton
+                    }
+                </Box>
             </Grid>
             <Grid item xs={11}>
             {

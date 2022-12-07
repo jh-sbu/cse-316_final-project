@@ -1,5 +1,5 @@
 import { Delete, ExpandLess, UnfoldMore } from "@mui/icons-material";
-import { Box, Button, Grid, IconButton, Link, ListItem, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, Link, ListItem, ListItemButton, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
 import ListEditBar from "./ListEditBar";
@@ -14,23 +14,29 @@ export default function PlaylistCardOpened(props) {
     //console.log(playlist);
 
     const handleCloseList = (event) => {
-        event.preventDefault();
+        event.stopPropagation();
         store.setOpenedList(null);
     }
 
     const handleClickDelete = (event) => {
-        event.preventDefault();
+        event.stopPropagation();
         store.markListForDeletion(playlist._id)
     }
 
-
+    const handleClickPlaylist = (event) => {
+        console.log("Received click on playlist");
+        event.stopPropagation();
+        //console.log("Playing playlist not implemented yet");
+        store.playPlaylist(playlist);
+    }
 
     return (
-        <ListItem
+        <ListItemButton
             id = {playlist.id}
             key = {playlist.id}
             sx = {{ marginTop: '15px', display: 'flex', p: 1, borderRadius: '30px', bgcolor: '#e1e4cb', '&:hover': {bgcolor: '#b28704'}}}
             style = {{ width: '100%', fontSize: '48pt' }}
+            onClick={handleClickPlaylist}
         >
             <Grid container direction="row">
                 <Grid item xs={9} container direction={"column"}>
@@ -58,6 +64,6 @@ export default function PlaylistCardOpened(props) {
                 <SongList />
                 <ListEditBar />
             </Grid>
-        </ListItem>
+        </ListItemButton>
     );
 }

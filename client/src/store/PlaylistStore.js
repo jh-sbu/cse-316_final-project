@@ -41,6 +41,7 @@ function PlaylistStoreContextProvider(props) {
         viewedLists: [],
         openedList: null,
         playingList: null,
+        playingIndex: -1,
         openModal: CurrentModal.NONE,
         currentSong: null,
         songIndex: -1,
@@ -62,7 +63,7 @@ function PlaylistStoreContextProvider(props) {
     }
 
     store.loadPlaylists = () => {
-        console.log(store.sortMethod);
+        //console.log(store.sortMethod);
 
         (async () => {
             const response = await api.getPlaylists();
@@ -103,6 +104,35 @@ function PlaylistStoreContextProvider(props) {
                 })
             }
         })();
+    }
+
+    store.playPlaylist = (playlist, index=0) => {
+        if(playlist.published) {
+            (async () => {
+                playlist.listens += 1;
+                const response = await api.updatePublishedListById(playlist._id, playlist);
+                if(response.data.success) {
+                    let updatedLists = store.playlists;
+                    let indexToFind = updatedLists.findIndex(x => x._id === playlist._id)
+                    updatedLists[indexToFind] = playlist;
+                    let viewedLists = updatedLists.filter(SearchFilters[store.searchMode](store.searchValue)).sort(store.sortMethod);
+                    return setStore({
+                        ...store,
+                        playlists: updatedLists,
+                        viewedLists: viewedLists,
+                        playingList: playlist,
+                        playingIndex: index,
+                        openModal: CurrentModal.NONE
+                    })
+                }
+            })();
+        } else {
+            return setStore({
+                ...store,
+                playingList: playlist,
+                playingIndex: index
+            })
+        }
     }
 
     store.changeSearchMode = (mode) => {
@@ -171,9 +201,6 @@ function PlaylistStoreContextProvider(props) {
             return;
         let newListName = store.getNewPlaylistName("Untitled ");
 
-        //console.log("Got the name " + newListName);
-        //console.log("Now create the list");
-
         console.log(auth.user);
 
         let newList = {
@@ -188,9 +215,6 @@ function PlaylistStoreContextProvider(props) {
             comments: [],
             ownerEmail: auth.user.email
         };
-
-        //console.log("Test");
-        //console.log(newList);
 
         (async () => {
             const response = await api.createPlaylist(newList.name, newList.ownerEmail, newList.ownerUsername, 
