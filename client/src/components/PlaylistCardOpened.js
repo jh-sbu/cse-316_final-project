@@ -30,6 +30,11 @@ export default function PlaylistCardOpened(props) {
         store.playPlaylist(playlist);
     }
 
+    const handleClickUsername = (event) => {
+        event.stopPropagation();
+        store.changeSearchAndValue("BY_USER", playlist.ownerUsername)
+    }
+
     let bgColor = "#e1e4cb";
     let bgColorSelected = "#b28704";
 
@@ -55,7 +60,10 @@ export default function PlaylistCardOpened(props) {
                     </Typography>
                     <Box>
                         <Typography>
-                            By: {playlist.ownerUsername}
+                            By:
+                            <Button onClick={handleClickUsername}>
+                                {playlist.ownerUsername}
+                            </Button> 
                         </Typography>
                     </Box>
                 </Grid>

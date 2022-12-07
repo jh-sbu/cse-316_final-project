@@ -1,5 +1,5 @@
 import { Box, Grid, TextField } from "@mui/material";
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
 import CommentList from "./CommentList";
 
@@ -37,15 +37,17 @@ export default function CommentBox(props) {
         )
     }
 
+    //<Grid container direction="column" sx={{height: '10%', width: '100%'}} alignItems={'flex-start'}>
+
     return (
-        <Grid container direction="column" sx={{height: '100%', width: '100%'}} alignItems={'flex-start'}>
+        <Fragment>
             <Grid item xs={9} container sx={{height: '100%', width: '100%', overflow: 'scroll'}}>
                 <CommentList />
             </Grid>
             <Grid item xs={3}>
                 {formBox}
             </Grid>
-        </Grid>
+        </Fragment>
     )
 
 }

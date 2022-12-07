@@ -18,7 +18,7 @@ export default function CommentList(props) {
     if(store.playingList) {
         if(store.playingList.published) {
             commentList = (
-                <List sx={{ height: '100%', flexDirection: 'row'}}>
+                <List>
                     {
                         store.playingList.comments.map((song, index) => {
                             console.log("In the loop");

@@ -106,6 +106,33 @@ function PlaylistStoreContextProvider(props) {
         })();
     }
 
+    store.changeSearchAndValue = (mode, value) => {
+        console.log("Changing both search method and value:");
+        console.log(mode);
+        console.log(value);
+
+        if(!SearchMode[mode]) {
+            console.log("Illegal search mode " + mode);
+            return;
+        }
+
+        (async () => {
+            const response = await api.getPlaylists();
+            if(response.data.success) {
+                let playlists = response.data.playlists;
+                let viewedLists = playlists.filter(SearchFilters[mode](value)).sort(store.sortMethod);
+                return setStore({
+                    ...store,
+                    playlists: playlists,
+                    openModal: CurrentModal.NONE,
+                    viewedLists: viewedLists,
+                    searchMode: mode,
+                    searchValue: value
+                })
+            }
+        })();
+    }
+
     store.playPlaylist = (playlist, index=0) => {
         if(playlist.published) {
             (async () => {
