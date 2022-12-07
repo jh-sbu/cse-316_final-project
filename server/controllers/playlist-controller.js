@@ -171,6 +171,54 @@ getPlaylists = async (req, res) => {
         })
 }
 
+updatePublishedPlaylist = async (req, res) => {
+    const body = req.body
+
+    if(!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update'
+        })
+    }
+
+    Playlist.findOne({ _id: req.params.id }, (err, playlist) =>{
+        if(err) {
+            return res.status(404).json({
+                err,
+                message: 'Playlist not found!'
+            })
+        }
+
+        if(!playlist.published) {
+            return res.status(400).json({
+                success: false,
+                message: 'Playlist has not been published yet!'
+            })
+        }
+        
+        playlist.likes = body.playlist.likes;
+        playlist.dislikes = body.playlist.dislikes;
+        playlist.listens = body.playlist.listens;
+        playlist.comments = body.playlist.comments;
+
+        playlist
+            .save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: playlist._id,
+                    message: 'Playlist updated!'
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'Playlist not updated!'
+                })
+            })
+    })
+}
+
 updatePlaylist = async (req, res) => {
     const body = req.body
     //console.log("updatePlaylist: " + JSON.stringify(body));
@@ -251,5 +299,6 @@ module.exports = {
     getPlaylistById,
     getPlaylistPairs,
     getPlaylists,
-    updatePlaylist
+    updatePlaylist,
+    updatePublishedPlaylist
 }

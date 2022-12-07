@@ -32,7 +32,7 @@ export default function PlayerCommentBox(props) {
 
     return (
         <Grid container direction={"column"} sx={{height: '100%', overflow: 'scroll', width: '100%'}} alignItems={'flex-start'}>
-            <Grid item sx={1}>
+            <Grid item xs={1}>
 
             
             <Box>
@@ -44,7 +44,7 @@ export default function PlayerCommentBox(props) {
                 }
             </Box>
             </Grid>
-            <Grid item sx={11}>
+            <Grid item xs={11}>
             {
                 window
             }

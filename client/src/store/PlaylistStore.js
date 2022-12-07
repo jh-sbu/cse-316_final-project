@@ -523,7 +523,42 @@ function PlaylistStoreContextProvider(props) {
                     playlists: updatedLists,
                     viewedLists: viewedLists,
                     openedList: store.openedList,
-                    openModal: CurrentModal
+                    openModal: CurrentModal.NONE
+                })
+            }
+        })();
+    }
+
+    store.makeComment = (comment, list) => {
+        if(!auth.loggedIn) {
+            console.log("Not logged in, cannot make comment: ")
+            console.log(comment);
+        }
+
+        let userName = auth.user.userName;
+        let newComment = {
+            userName: userName,
+            comment: comment
+        };
+
+        list.comments.push(newComment);
+
+        store.updatePublishedList(list);
+    }
+
+    store.updatePublishedList = (list) => {
+        (async () => {
+            const response = await api.updatePublishedListById(list._id, list);
+            if(response.data.success) {
+                let updatedLists = store.playlists;
+                let indexToFind = updatedLists.findIndex(x => x._id === list._id)
+                updatedLists[indexToFind] = list;
+                let viewedLists = updatedLists.filter(SearchFilters[store.searchMode](store.searchValue)).sort(store.sortMethod);
+                return setStore({
+                    ...store,
+                    playlists: updatedLists,
+                    viewedLists: viewedLists,
+                    openModal: CurrentModal.NONE
                 })
             }
         })();

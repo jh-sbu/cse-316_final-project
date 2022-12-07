@@ -9,12 +9,21 @@ export default function CommentBox(props) {
 
     const handleSubmitComment = (event) => {
         event.preventDefault();
-        console.log("Submitting a comment not implemented yet!");
+        //console.log("Submitting a comment not implemented yet!");
+
+        const formData = new FormData(event.currentTarget);
+
+        const commentVal = formData.get("commentField");
+
+        console.log("Comment: ");
+        console.log(commentVal);
+
+        store.makeComment(commentVal, store.openedList)
     }
 
     return (
-        <Grid container direction="column" sx={{height: '50%', width: '100%'}} alignItems={'flex-start'}>
-            <Grid item xs={9} container sx={{height: '70%'}}>
+        <Grid container direction="column" sx={{height: '100%', width: '100%'}} alignItems={'flex-start'}>
+            <Grid item xs={2} container >
                 <CommentList />
             </Grid>
             <Grid item xs={3}>

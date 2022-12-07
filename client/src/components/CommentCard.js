@@ -8,7 +8,7 @@ export default function CommentCard(props) {
 
     const { comment, index } = props;
 
-    console.log(index)
+    //console.log(index)
 
     return (
         <ListItem
@@ -19,10 +19,10 @@ export default function CommentCard(props) {
         >
             <Grid container direction="column" alignItems={"flex-start"}>
                 <Typography>
-                    Hello! Username goes here!
+                    {comment.userName}
                 </Typography>
                 <Typography>
-                    Hello! Comment body goes here!
+                    {comment.comment}
                 </Typography>
             </Grid>
         </ListItem>

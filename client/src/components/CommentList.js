@@ -15,10 +15,10 @@ export default function CommentList(props) {
         commentList = (
             <List sx={{ height: '100%'}}>
                 {
-                    store.openedList.songs.map((song, index) => {
+                    store.openedList.comments.map((song, index) => {
                         console.log("In the loop");
                         return (
-                            <CommentCard comment={song} index={index} />
+                            <CommentCard comment={song} index={index} key={index} />
                         )
                     })
                 }
@@ -26,7 +26,7 @@ export default function CommentList(props) {
         )
     }
 
-    console.log(commentList);
+    //console.log(commentList);
 
     return (
         <Box sx={{height: "100%", overflow: "scroll"}}>
