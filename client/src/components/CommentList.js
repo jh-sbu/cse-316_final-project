@@ -11,11 +11,11 @@ export default function CommentList(props) {
 
     console.log("It gets here");
 
-    if(true || store.playingList) {
+    if(store.playingList) {
         commentList = (
             <List sx={{ height: '100%'}}>
                 {
-                    store.openedList.comments.map((song, index) => {
+                    store.playingList.comments.map((song, index) => {
                         console.log("In the loop");
                         return (
                             <CommentCard comment={song} index={index} key={index} />

@@ -26,14 +26,21 @@ export default function MUIDeleteModal() {
         name = store.listToDelete.name;
     }
     function handleDeleteList(event) {
+        event.stopPropagation();
         store.deleteMarkedList();
     }
     function handleCloseModal(event) {
+        event.stopPropagation();
         store.unmarkListForDeletion();
     }
 
+    const handleClickModal = (event) => {
+        event.stopPropagation();
+        console.log("Hello!");
+    }
+
     return (
-        <Modal open={store.isDeleteListModalOpen()}>
+        <Modal open={store.isDeleteListModalOpen()} onClick={handleClickModal}>
             <Grid justifyContent={"flex-center"} sx={style}>
                 <Alert severity='warning'>
                     <AlertTitle>Delete List?</AlertTitle>

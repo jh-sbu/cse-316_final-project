@@ -31,11 +31,19 @@ export default function PublishedCardClosed(props) {
         store.playPlaylist(playlist);
     }
 
+    let bgColor = "#e1e4cb";
+    let bgColorSelected = "#b28704";
+
+    if(store.playingList && store.playingList._id === playlist._id) {
+        bgColor = "#00bcd4"
+        bgColorSelected = "#008394"
+    }
+
     return (
         <ListItemButton
             id = {playlist.id}
             key = {playlist.id}
-            sx = {{ marginTop: '15px', display: 'flex', p: 1, borderRadius: '30px', bgcolor: '#e1e4cb', '&:hover': {bgcolor: '#b28704'}}}
+            sx = {{ marginTop: '15px', display: 'flex', p: 1, borderRadius: '30px', bgcolor: bgColor, '&:hover': {bgcolor: bgColorSelected}}}
             style = {{ width: '100%', fontSize: '48pt' }}
             onClick = {handleClickPlaylist}
         >

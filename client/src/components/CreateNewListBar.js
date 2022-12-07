@@ -6,7 +6,8 @@ import PlaylistStoreContext from "../store/PlaylistStore";
 export default function CreateNewListBar(props) {
     const { store } = useContext(PlaylistStoreContext)
 
-    const handleCreateNewList = () => {
+    const handleCreateNewList = (event) => {
+        event.stopPropagation();
         store.createPlaylist();
     }
 

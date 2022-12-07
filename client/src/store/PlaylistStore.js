@@ -245,6 +245,8 @@ function PlaylistStoreContextProvider(props) {
             ownerEmail: auth.user.email
         }
 
+        console.log("Do you get here");
+
         //console.log("Creating duplicate list:");
         //console.log(copiedList);
 
@@ -471,8 +473,14 @@ function PlaylistStoreContextProvider(props) {
         let list = store.openedList;      
         list.songs.splice(index, 1); 
 
+        let newPlaying = -2;
+
+        if(store.playingList && store.playingList === store.openedList && store.playingIndex >= index) {
+            newPlaying = store.playingIndex - 1
+        }
+
         // NOW MAKE IT OFFICIAL
-        store.updateCurrentList();
+        store.updateCurrentList(newPlaying);
     }
 
     // THIS FUNCTION UPDATES THE TEXT IN THE ITEM AT index TO text
@@ -534,7 +542,11 @@ function PlaylistStoreContextProvider(props) {
         tps.addTransaction(transaction);
     }
 
-    store.updateCurrentList = () => {
+    store.updateCurrentList = (newPlaying = -2) => {
+        let newPlaying2 = newPlaying;
+        if(newPlaying === -2) {
+            newPlaying2 = store.playingIndex;
+        }
         (async () => {
             const response = await api.updatePlaylistById(store.openedList._id, store.openedList);
             if(response.data.success) {
@@ -547,6 +559,7 @@ function PlaylistStoreContextProvider(props) {
                     playlists: updatedLists,
                     viewedLists: viewedLists,
                     openedList: store.openedList,
+                    playingIndex: newPlaying2,
                     openModal: CurrentModal.NONE
                 })
             }

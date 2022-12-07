@@ -51,13 +51,17 @@ export default function MUIEditSongModal() {
         setYouTubeId(event.target.value);
     }
 
+    const handleClickModal = (event) => {
+        event.stopPropagation();
+    }
+
     //console.log("HELLO");
     //console.log(store.currentModal);
 
 
     let testfunc = () => {
         return (
-            <Modal open={store.openModal === "EDIT_SONG"}>
+            <Modal open={store.openModal === "EDIT_SONG"} onClick={handleClickModal}>
                 <Box sx={style}>
                     <Grid container direction={"column"}>
                         <Grid item>

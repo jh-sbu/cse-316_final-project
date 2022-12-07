@@ -8,22 +8,22 @@ export default function ListEditBar(props) {
     const { store } = useContext(PlaylistStoreContext);
 
     const handleUndoClick = (event) => {
-        event.preventDefault();
+        event.stopPropagation();
         store.undo();
     }
 
     const handleRedoClick = (event) => {
-        event.preventDefault();
+        event.stopPropagation();
         store.redo();
     }
 
     const handleAddSong = (event) => {
-        event.preventDefault();
+        event.stopPropagation();
         store.addNewSong();
     }
 
     const handlePublish = (event) => {
-        event.preventDefault();
+        event.stopPropagation();
         store.publishCurrentList();
     }
 

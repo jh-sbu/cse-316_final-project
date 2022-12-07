@@ -38,10 +38,14 @@ export default function MUIRemoveSongModal() {
         songTitle = store.currentSong.title;
     }
 
+    const handleClickModal = (event) => {
+        event.stopPropagation();
+    }
+
     console.log("Its trying");
 
     return (
-        <Modal open={store.openModal === "REMOVE_SONG"}>
+        <Modal open={store.openModal === "REMOVE_SONG"} onClick={handleClickModal}>
             <Grid justifyContent={"flex-center"} sx={style}>
                 <Alert severity='warning'>
                     <AlertTitle>Delete List?</AlertTitle>

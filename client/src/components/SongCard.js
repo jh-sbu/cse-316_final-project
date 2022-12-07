@@ -42,22 +42,26 @@ function SongCard(props) {
     
     function handleRemoveSong(event) {
         event.preventDefault();
+        event.stopPropagation();
         //console.log("Got here");
         store.showRemoveSongModal(index, song);
     }
 
     function handleEditSong(event) {
         event.preventDefault();
+        event.stopPropagation();
         store.showEditSongModal(index, song);
     }
 
     function handleClick(event) {
+        event.stopPropagation();
+        store.playPlaylist(store.openedList, index);
         // DOUBLE CLICK IS FOR SONG EDITING
-        if (event.detail === 2) {
+        /*if (event.detail === 2) {
             //console.log("It gets here");
             //store.showEditSongModal(index, song);
             console.log("Use the edit button to edit songs now");
-        }
+        }*/
     }
 
     let cardClass = "list-card unselected-list-card";
