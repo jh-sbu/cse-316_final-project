@@ -58,8 +58,8 @@ function PlaylistStoreContextProvider(props) {
 
     const SearchFilters = {
         OWN_LISTS: (searchTerm) => (list) => auth.user ? list.ownerEmail === auth.user.email : false,
-        BY_USER: (searchTerm) => (list) => searchTerm === "" ? false : list.ownerUsername.includes(searchTerm),
-        BY_NAME: (searchTerm) => (list) => searchTerm === "" ? false : list.name.includes(searchTerm)
+        BY_USER: (searchTerm) => (list) => searchTerm === "" ? false : list.ownerUsername.includes(searchTerm) && list.published,
+        BY_NAME: (searchTerm) => (list) => searchTerm === "" ? false : list.name.includes(searchTerm) && list.published
     }
 
     store.loadPlaylists = () => {
