@@ -636,6 +636,32 @@ function PlaylistStoreContextProvider(props) {
         store.updatePublishedList(list);
     }
 
+    store.changeListName = (list, name) => {
+        if(list.published) {
+            console.log("Cannot change the name of a published list!");
+            return;
+        } else if(store.playlists.find(x => x.ownerEmail === list.ownerEmail && x._id !== list._id && x.name === name)) {
+            console.log("User already has a list with that name!");
+        } else {
+            (async () => {
+                list.name = name;
+                const response = await api.updatePlaylistById(list._id, list);
+                if(response.data.success) {
+                    let updatedLists = store.playlists;
+                    let indexToFind = updatedLists.findIndex(x => x._id === list._id)
+                    updatedLists[indexToFind] = list;
+                    let viewedLists = updatedLists.filter(SearchFilters[store.searchMode](store.searchValue)).sort(store.sortMethod);
+                    return setStore({
+                        ...store,
+                        playlists: updatedLists,
+                        viewedLists: viewedLists,
+                        openModal: CurrentModal.NONE
+                    })
+                }
+            })();
+        }
+    }
+
     store.updatePublishedList = (list) => {
         (async () => {
             const response = await api.updatePublishedListById(list._id, list);
