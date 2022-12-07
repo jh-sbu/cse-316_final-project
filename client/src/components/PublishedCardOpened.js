@@ -2,7 +2,6 @@ import { Delete, ExpandLess, ThumbDown, ThumbUp, UnfoldMore } from "@mui/icons-m
 import { Box, Button, Grid, IconButton, Link, ListItem, ListItemButton, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
-import ListEditBar from "./ListEditBar";
 import PublishedListBottomBar from "./PublishedListBottomBar";
 import SongList from "./SongList";
 

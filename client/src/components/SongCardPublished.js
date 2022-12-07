@@ -13,12 +13,14 @@ function SongCardPublished(props) {
     const { song, index } = props;
 
     function handleClick(event) {
+        event.stopPropagation();
+        store.playPlaylist(store.openedList, index);
         // DOUBLE CLICK IS FOR SONG EDITING
-        if (event.detail === 2) {
+        /*if (event.detail === 2) {
             //console.log("It gets here");
             //store.showEditSongModal(index, song);
             console.log("Use the edit button to edit songs now");
-        }
+        }*/
     }
 
     let cardClass = "list-card unselected-list-card";
