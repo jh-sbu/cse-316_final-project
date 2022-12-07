@@ -1,6 +1,6 @@
 import { Delete, ExpandMore, ThumbDown, ThumbUp, UnfoldMore } from "@mui/icons-material";
 import { Box, Button, Grid, IconButton, Link, ListItem, ListItemButton, Typography } from "@mui/material";
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import AuthContext from "../auth";
 import PlaylistStoreContext from "../store/PlaylistStore";
 import PublishedListBottomBar from "./PublishedListBottomBar";
@@ -74,6 +74,27 @@ export default function PublishedCardClosed(props) {
         )
     }
 
+    let likeDislikeButtons = ""
+
+    if(auth.loggedIn) {
+        likeDislikeButtons = (
+            <Fragment>
+                <Typography>
+                    <IconButton onClick={handleClickLike}>
+                        <ThumbUp />
+                    </IconButton>
+                    {playlist.likes}
+                </Typography>
+                <Typography>
+                    <IconButton onClick={handleClickDislike}>
+                        <ThumbDown />
+                    </IconButton> 
+                    {playlist.dislikes}
+                </Typography>
+            </Fragment>
+        )
+    }
+
     return (
         <ListItemButton
             id = {playlist.id}
@@ -102,18 +123,9 @@ export default function PublishedCardClosed(props) {
                         </Grid>
                     </Grid>
                     <Grid item xs={3} container direction="row" justifyContent={"flex-end"}>
-                        <Typography>
-                            <IconButton onClick={handleClickLike}>
-                                <ThumbUp />
-                            </IconButton>
-                            {playlist.likes}
-                        </Typography>
-                        <Typography>
-                            <IconButton onClick={handleClickDislike}>
-                                <ThumbDown />
-                            </IconButton> 
-                            {playlist.dislikes}
-                        </Typography>
+                        {
+                            likeDislikeButtons
+                        }
                     </Grid>
                     <Grid item xs={3} container direction="column" alignItems={"flex-end"}>
                         {
