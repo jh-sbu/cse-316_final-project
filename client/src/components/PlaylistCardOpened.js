@@ -2,6 +2,7 @@ import { Delete, ExpandLess, UnfoldMore } from "@mui/icons-material";
 import { Box, Button, Grid, IconButton, Link, ListItem, ListItemButton, Typography } from "@mui/material";
 import { useContext } from "react";
 import PlaylistStoreContext from "../store/PlaylistStore";
+import EditableListTitle from "./EditableListTitle";
 import ListEditBar from "./ListEditBar";
 import SongList from "./SongList";
 
@@ -53,11 +54,7 @@ export default function PlaylistCardOpened(props) {
         >
             <Grid container direction="row">
                 <Grid item xs={9} container direction={"column"}>
-                    <Typography variant="h5">
-                        {
-                            playlist.name
-                        }
-                    </Typography>
+                    <EditableListTitle playlist={playlist} />
                     <Box>
                         <Typography>
                             By:

@@ -64,7 +64,7 @@ function PlaylistStoreContextProvider(props) {
         if(!auth.loggedIn && store.searchMode === SearchMode["OWN_LISTS"]) {
             setStore({
                 ...store,
-                searchMode: SearchMode["BY_USER"]
+                searchMode: SearchMode["BY_NAME"]
             })
         }
     })

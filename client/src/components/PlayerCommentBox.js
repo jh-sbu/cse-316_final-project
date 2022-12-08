@@ -24,7 +24,7 @@ export default function PlayerCommentBox(props) {
 
     let commentButton = ""
 
-    if(auth.loggedIn) {
+    if(true || auth.loggedIn) {
         commentButton = (
             <Button onClick={handleCommentsButton}>
                 Comments

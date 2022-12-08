@@ -1,11 +1,14 @@
 import { Box, Grid, TextField } from "@mui/material";
 import { Fragment, useContext } from "react";
+import AuthContext from "../auth";
 import PlaylistStoreContext from "../store/PlaylistStore";
 import CommentList from "./CommentList";
 
 export default function CommentBox(props) {
 
     const { store } = useContext(PlaylistStoreContext);
+
+    const { auth } = useContext(AuthContext);
 
     const handleSubmitComment = (event) => {
         event.preventDefault();
@@ -23,7 +26,7 @@ export default function CommentBox(props) {
 
     let formBox = ""
 
-    if(store.playingList && store.playingList.published) {
+    if(auth.loggedIn && store.playingList && store.playingList.published) {
         formBox = (
             <Box component="form" noValidate onSubmit={handleSubmitComment}>
                 <TextField
