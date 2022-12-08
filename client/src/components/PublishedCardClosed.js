@@ -42,8 +42,8 @@ export default function PublishedCardClosed(props) {
         store.changeSearchAndValue("BY_USER", playlist.ownerUsername)
     }
 
-    let bgColor = "#e1e4cb";
-    let bgColorSelected = "#b28704";
+    let bgColor = "#23c87e";
+    let bgColorSelected = "#13a85e";
 
     if(store.playingList && store.playingList._id === playlist._id) {
         bgColor = "#00bcd4"

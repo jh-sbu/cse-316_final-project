@@ -35,8 +35,8 @@ export default function PlaylistCardOpened(props) {
         store.changeSearchAndValue("BY_USER", playlist.ownerUsername)
     }
 
-    let bgColor = "#e1e4cb";
-    let bgColorSelected = "#b28704";
+    let bgColor = "#e91e63";
+    let bgColorSelected = "#a31545";
 
     if(store.playingList && store.playingList._id === playlist._id) {
         bgColor = "#00bcd4"

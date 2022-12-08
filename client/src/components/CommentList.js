@@ -42,7 +42,7 @@ export default function CommentList(props) {
     //console.log(commentList);
 
     return (
-        <Box sx={{height: "100%", overflow: "scroll"}}>
+        <Box sx={{height: "100%", overflow: "scroll", width: "100%"}}>
             {
                 commentList
             }

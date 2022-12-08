@@ -30,7 +30,7 @@ export default function ListEditBar(props) {
     return (
         <Grid container direction={"row"}>
             <Grid item>
-                <Button onClick={handlePublish}>
+                <Button onClick={handlePublish} variant="contained">
                     Publish
                 </Button>
                 <IconButton onClick={handleAddSong}>
