@@ -1,2 +1,5 @@
 client/node_modules
 server/node_modules
+FinalProject*
+playlists.json
+users.json

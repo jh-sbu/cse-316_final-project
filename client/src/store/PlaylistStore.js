@@ -196,7 +196,7 @@ function PlaylistStoreContextProvider(props) {
             const response = await api.getPlaylists();
             if(response.data.success) {
                 let playlists = response.data.playlists;
-                let viewedLists = playlists.filter(SearchFilters[mode](store.searchValue));
+                let viewedLists = []; //playlists.filter(SearchFilters[mode](store.searchValue));
                 //console.log("Logged in?");
                 //console.log(auth.user ? true : false);
                 //console.log(auth.user);
@@ -212,7 +212,8 @@ function PlaylistStoreContextProvider(props) {
                     playlists: playlists,
                     openModal: CurrentModal.NONE,
                     viewedLists: viewedLists.sort(store.sortMethod),
-                    searchMode: SearchMode[mode]
+                    searchMode: SearchMode[mode],
+                    searchValue: ""
                 })
             }
         })();
