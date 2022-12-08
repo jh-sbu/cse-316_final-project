@@ -91,6 +91,22 @@ export default function ListerTopBar(props) {
         )
     }
 
+    let searchBar = ""
+
+    if(auth.loggedIn && store.searchMode !== "OWN_LISTS") {
+        searchBar = (
+            <Box component="form" noValidate onSubmit={handleEnteredSearchValue}>
+                <TextField
+                    margin="normal"
+                    fullWidth
+                    id="searchString"
+                    label="Search"
+                    name="searchString"
+                />
+            </Box>
+        )
+    }
+
     return (
         <Grid container sx={{ mt: 3, mb: 2 }} direction="row" alignItems={"center"}>
             <Grid item xs={4}>
@@ -115,15 +131,9 @@ export default function ListerTopBar(props) {
                 </IconButton>
             </Grid>
             <Grid item xs={4}>
-                <Box component="form" noValidate onSubmit={handleEnteredSearchValue}>
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        id="searchString"
-                        label="Search"
-                        name="searchString"
-                    />
-                </Box>
+                {
+                    searchBar
+                }
             </Grid>
             <Grid item xs={4} container justifyContent="flex-end" alignItems={"flex-end"}>
                 <ListerSortByList />
