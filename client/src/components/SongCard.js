@@ -80,6 +80,14 @@ function SongCard(props) {
         }
     }
 
+    let bgcolor = "#e1e4cb";
+    let bgcolor_selected = "#b28704"
+
+    if(store.playingList && store.playingIndex === index) {
+        bgcolor = "#ffeb3b"
+        bgcolor_selected = "#b2a429"
+    }
+
     return (
         <ListItem 
             id={'song-' + index + '-card'}
@@ -91,7 +99,7 @@ function SongCard(props) {
             onDrop={handleDrop}
             draggable="true"
             onClick={handleClick}
-            sx={{ marginTop: '15px', display: 'flex', p: 1, borderRadius: '30px', bgcolor: '#e1e4cb', '&:hover': {bgcolor: '#b28704'}}}
+            sx={{ marginTop: '15px', display: 'flex', p: 1, borderRadius: '30px', bgcolor: bgcolor, '&:hover': {bgcolor: bgcolor_selected}}}
             style={{ width: '100%', fontSize: '28pt' }}
         >
             <Box sx={{flexGrow: 1}}>

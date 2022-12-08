@@ -196,7 +196,7 @@ function PlaylistStoreContextProvider(props) {
             const response = await api.getPlaylists();
             if(response.data.success) {
                 let playlists = response.data.playlists;
-                let viewedLists = []; //playlists.filter(SearchFilters[mode](store.searchValue));
+                let viewedLists = playlists.filter(SearchFilters[mode](""));
                 //console.log("Logged in?");
                 //console.log(auth.user ? true : false);
                 //console.log(auth.user);
