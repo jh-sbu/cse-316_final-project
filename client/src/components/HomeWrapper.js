@@ -3,6 +3,7 @@ import HomeScreen from './HomeScreen'
 import SplashScreen from './SplashScreen'
 import AuthContext from '../auth'
 import { useHistory } from 'react-router-dom';
+import { PlaylistStoreContextProvider } from '../store/PlaylistStore';
 
 export default function HomeWrapper() {
     const { auth } = useContext(AuthContext);
@@ -15,6 +16,10 @@ export default function HomeWrapper() {
         //return <HomeScreen />
         return null;
     }
-    else
-        return <SplashScreen />
+
+    return (
+        <PlaylistStoreContextProvider>
+            <SplashScreen />
+        </PlaylistStoreContextProvider>
+    )
 }

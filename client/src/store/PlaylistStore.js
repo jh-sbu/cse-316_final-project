@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../auth";
 import jsTPS from "../common/jsTPS";
@@ -52,8 +52,6 @@ function PlaylistStoreContextProvider(props) {
         sortMethod: SortMethods.NAME_A_Z
     })
 
-    const history = useHistory();
-
     const { auth } = useContext(AuthContext);
 
     const SearchFilters = {
@@ -61,6 +59,15 @@ function PlaylistStoreContextProvider(props) {
         BY_USER: (searchTerm) => (list) => searchTerm === "" ? false : list.ownerUsername.includes(searchTerm) && list.published,
         BY_NAME: (searchTerm) => (list) => searchTerm === "" ? false : list.name.includes(searchTerm) && list.published
     }
+
+    useEffect(() => {
+        if(!auth.loggedIn && store.searchMode === SearchMode["OWN_LISTS"]) {
+            setStore({
+                ...store,
+                searchMode: SearchMode["BY_USER"]
+            })
+        }
+    })
 
     store.loadPlaylists = () => {
         //console.log(store.sortMethod);

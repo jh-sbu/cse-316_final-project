@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Icon, Menu, MenuItem, TextField } from "@mui/material"
+import { Box, Button, Grid, Icon, IconButton, Menu, MenuItem, TextField } from "@mui/material"
 
 import { House, People, Person } from "@mui/icons-material"
 import ListerSortByList from "./ListerSortByList";
@@ -47,27 +47,37 @@ export default function ListerTopBar(props) {
         
     }
 
+    let homeButton = ""
+
+    if(auth.loggedIn) {
+        homeButton = (
+            <IconButton
+                type="button"
+                onClick={handleHomeSearch}
+            >
+                <House />
+            </IconButton>
+        )
+    }
+
     return (
         <Grid container sx={{ mt: 3, mb: 2 }} direction="row" alignItems={"center"}>
             <Grid item xs={4}>
-                <Button
-                    type="button"
-                    onClick={handleHomeSearch}
-                >
-                    <House />
-                </Button>
-                <Button
+                {
+                    homeButton
+                }
+                <IconButton
                     type="button"
                     onClick={handleUserSearch}
                 >
                     <Person />
-                </Button>
-                <Button
+                </IconButton>
+                <IconButton
                     type="button"
                     onClick={handleNameSearch}
                 >
                     <People />
-                </Button>
+                </IconButton>
             </Grid>
             <Grid item xs={4}>
                 <Box component="form" noValidate onSubmit={handleEnteredSearchValue}>

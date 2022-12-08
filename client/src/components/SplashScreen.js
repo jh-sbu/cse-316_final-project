@@ -1,9 +1,19 @@
 import { Box, Button, Grid, ImageList, ImageListItem, Typography } from "@mui/material";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import PlaylisterLogo from "../PlaylisterLogo.png"
+import PlaylistStoreContext from "../store/PlaylistStore";
 
 export default function SplashScreen() {
+
     const history = useHistory();
+
+    const continueAsGuest = (event) => {
+        event.stopPropagation();
+
+        history.push("/home");
+    }
+
     return (
         <Grid>
             <Grid item xs={12} sm={12} md={12}>
@@ -58,7 +68,7 @@ export default function SplashScreen() {
                     type="button"
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                    onClick={() => history.push("/home")}
+                    onClick={continueAsGuest}
                 >
                     Continue as Guest
                 </Button>
