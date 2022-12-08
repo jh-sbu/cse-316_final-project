@@ -50,13 +50,44 @@ export default function ListerTopBar(props) {
     let homeButton = ""
 
     if(auth.loggedIn) {
+
+        let homeSearchIcon = <House />
+
+        if(store.searchMode === "OWN_LISTS") {
+            homeSearchIcon = (
+                <House color="error" />
+            )
+        }
+        
         homeButton = (
             <IconButton
                 type="button"
                 onClick={handleHomeSearch}
             >
-                <House />
+                {
+                    homeSearchIcon
+                }
             </IconButton>
+        )
+    }
+
+    let nameSearchIcon = (
+        <People />
+    )
+
+    if(store.searchMode === "BY_NAME") {
+        nameSearchIcon = (
+            <People color="error" />
+        )
+    }
+
+    let userSearchIcon = (
+        <Person />
+    )
+
+    if(store.searchMode === "BY_USER") {
+        userSearchIcon = (
+            <Person color="error" />
         )
     }
 
@@ -70,13 +101,17 @@ export default function ListerTopBar(props) {
                     type="button"
                     onClick={handleUserSearch}
                 >
-                    <Person />
+                    {
+                        userSearchIcon
+                    }
                 </IconButton>
                 <IconButton
                     type="button"
                     onClick={handleNameSearch}
                 >
-                    <People />
+                    {
+                        nameSearchIcon
+                    }
                 </IconButton>
             </Grid>
             <Grid item xs={4}>
