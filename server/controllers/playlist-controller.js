@@ -35,6 +35,7 @@ createPlaylist = (req, res) => {
                     .save()
                     .then(() => {
                         return res.status(201).json({
+                            success: true,
                             playlist: playlist
                         })
                     })

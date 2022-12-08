@@ -246,7 +246,7 @@ function PlaylistStoreContextProvider(props) {
             return;
         let newListName = store.getNewPlaylistName("Untitled ");
 
-        console.log(auth.user);
+        //console.log(auth.user);
 
         let newList = {
             name: newListName,
@@ -264,9 +264,31 @@ function PlaylistStoreContextProvider(props) {
         (async () => {
             const response = await api.createPlaylist(newList.name, newList.ownerEmail, newList.ownerUsername, 
                 newList.likes, newList.dislikes, newList.published, newList.publishDate, newList.listens,
-                newList.songs, newList.comments).then(() => {
-                    store.loadPlaylists();
-                });
+                newList.songs, newList.comments);
+
+            //console.log("It gets here");
+
+            //console.log(response);
+                
+            if(response.data.success) {
+                    const newListId = response.data.playlist._id;
+                    (async () => {
+                        const response2 = await api.getPlaylists();
+                        if(response2.data.success) {
+                            let playlists = response2.data.playlists;
+                            let viewedLists = playlists.filter(SearchFilters[store.searchMode](store.searchValue)).sort(store.sortMethod);
+                            let newOpenedList = playlists.find(x => x._id === newListId);
+                            setStore({
+                                ...store,
+                                playlists: playlists,
+                                viewedLists: viewedLists,
+                                openedList: newOpenedList,
+                                openModal: CurrentModal.NONE
+                            })
+                        }
+                    })();
+                    //store.loadPlaylists();
+                }
         })();
     }
 
@@ -318,7 +340,7 @@ function PlaylistStoreContextProvider(props) {
 
         //console.log("List number: " + newListNumber)
 
-        console.log(myLists);
+        //console.log(myLists);
 
         return newListName + String(newListNumber);
     }
